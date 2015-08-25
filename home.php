@@ -8,7 +8,7 @@
 
             <div class="box-title">
                 <img class="box-user-icon" src="">
-                <span class="user-firstName">[firstName], Update your status</span>
+                <span class="user-firstName"><?php echo $_SESSION['auth']['user_firstname']; ?>, Update your status</span>
             </div>
 
             <textarea class="post-content" placeholder="What's on your mind?"></textarea>
@@ -31,7 +31,7 @@
             <div class="box-title">Welcome</div>
             <img class="user-welcome-pic" src="">
             <div class="details">
-                <span class="user-firstName">[firstName]</span><br>
+                <span class="user-firstName"><?php echo $_SESSION['auth']['user_firstname']; ?></span><br>
                 <a href="account.php">Edit Profile</a>
             </div>
         </div>
@@ -39,10 +39,10 @@
         <div class="box">
             <div class="box-title">My Details</div>
             <div class="details bold">
-                <span class="user-fullName">[fullName]</span><br>
+                <span class="user-fullName"><?php echo $_SESSION['auth']['user_firstname'] . ' ' . $_SESSION['auth']['user_lastname']; ?></span><br>
                 <span class="user-birthDate">[birthDate]</span>
                 <span class="user-age">([age])</span><br>
-                <span class="user-email">[email]</span><br>
+                <span class="user-email"><?php echo $_SESSION['auth']['user_email']; ?></span><br>
             </div>
         </div>
 
