@@ -1,10 +1,6 @@
 var Index = {
-
-};
-
-$(function() {
-    $('#reg-btn').on('click', function () {
-        var form = $('form'), data;
+    register: function () {
+        var form = $('form#register'), data;
         if ($('[name="password"]').val() && $('[name="password"]').val() !== $('[name="password_confirm"]').val()) {
             $('[name="password_confirm"]')[0].setCustomValidity('Passwords Don\'t Match');
         } else {
@@ -20,14 +16,40 @@ $(function() {
             data: data,
             success: function( error ) {
                 if (error) {
-                    $('.error').slideDown().find('span').html(error);
+                    $('#reg-error').slideDown().find('span').html(error);
                 } else {
-                    $('.error').slideUp();
+                    $('#reg-error').slideUp();
                     window.location = 'account.php';
                 }
             },
             dataType: 'json'
         });
         return false;
-    });
+    },
+    login: function () {
+        var form = $('form#login'), data = JSON.stringify(form.serializeArray());
+        if (!form[0].checkValidity()) {
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "api/login",
+            data: data,
+            success: function( error ) {
+                if (error) {
+                    $('#login-error').slideDown().find('span').html(error);
+                } else {
+                    $('#login-error').slideUp();
+                    window.location = 'home.php';
+                }
+            },
+            dataType: 'json'
+        });
+        return false;
+    }
+};
+
+$(function() {
+    $('#reg-btn').on('click', Index.register);
+    $('#login-btn').on('click', Index.login);
 });

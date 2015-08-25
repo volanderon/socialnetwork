@@ -1,5 +1,11 @@
 <?php
+
 session_start();
+
+if (isset($_SESSION['auth'])) {
+    header('Location: home.php');
+    exit;
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -52,7 +58,7 @@ session_start();
                 <form id="register">
                 
                     <h1>Sign Up</h1>
-                    <div class="error">Error<br>
+                    <div id="reg-error" class="error">Error<br>
                         <span></span>
                     </div>
                     <input name="first_name" type="text" placeholder="First Name" pattern="[a-zA-Z]+" required><br>
@@ -64,13 +70,16 @@ session_start();
                     
                 </form>
             
-                <div id="login">
+                <form id="login">
+
+                    <div id="login-error" class="error">Error<br>
+                        <span></span>
+                    </div>
+                    <input type="email" name="email" placeholder="Email" required><br>
+                    <input type="password" name="password" placeholder="Password" required><br>
+                    <input id="login-btn" type="submit" name="login" value="LOGIN">
                 
-                    <input type="email" name="email" placeholder="Email"><br>
-                    <input type="password" name="password" placeholder="Password"><br>
-                    <input type="submit" name="login" value="LOGIN">
-                
-                </div>
+                </form>
             </div>
             
         </main>

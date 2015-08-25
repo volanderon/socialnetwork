@@ -8,7 +8,7 @@ class User {
         $this->_db = DB::getInstance();
     }
 
-    public function createNewUser( $details ) {
+    public function createNewUser( $details, $login ) {
         $ret = '';
 
         if (!preg_match("/^[a-zA-Z]+$/", $details[0]['value'])) {
@@ -37,6 +37,10 @@ class User {
             $ret = 'This email is already taken';
         }
 
+        if (!$ret) {
+            $login->fillSession($this->getUserById($user_id));
+        }
+
         return $ret;
     }
 
@@ -52,7 +56,7 @@ class User {
     }
 
     public function getUserById( $id ) {
-        $users = $this->_db->query( "SELECT * FROM " . TBL_USERS . " WHERE user_id = $id" );
+        $users = $this->_db->query( "SELECT * FROM " . TBL_USERS . " INNER JOIN " . TBL_USERS_INFO . " ON " . TBL_USERS . ".user_id=". TBL_USERS_INFO . ".user_id WHERE " . TBL_USERS . ".user_id = $id" );
         return $users->fetch_assoc();
     }
 

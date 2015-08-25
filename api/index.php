@@ -69,10 +69,7 @@ $app->post( '/user/', function() use ( $user, $app, $login ) {
 	$data = json_decode( $user_details, true );
 
 	// And finally send all the array to the createNewuser method
-	$error = $user->createNewUser( $data );
-    if (!$error) {
-        $login->fillSession($data);
-    }
+	$error = $user->createNewUser( $data, $login );
 
     echo json_encode($error);
 });
@@ -93,15 +90,19 @@ $app->put( '/user/:id/', function( $id ) use ( $user, $app ) {
 
 
 
-$app->post( '/login/', function() use ( $app, $login ) {
-	$username = $app->request->post('username');
-	$password = $app->request->post('password');
+$app->post( '/login', function() use ( $app, $login ) {
+    $body = json_decode($app->request->getBody());
+	$email = $body[0]->value;
+	$password = $body[1]->value;
+    $status = $login->login( $email, $password );
 
-	var_dump( $login->match( $username, $password ) );
+    echo json_encode($status);
 });
 
 $app->post( '/logout', function() use ( $login ) {
     $login->logout();
+
+    echo json_encode('');
 });
 
 $app->run();
