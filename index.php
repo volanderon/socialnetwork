@@ -45,20 +45,20 @@
             </div>
 
             <div id="forms">
-                <div id="register">
+                <form id="register">
                 
                     <h1>Sign Up</h1>
                     <div class="error">Error<br>
                         <span>**Error shown here**</span>
                     </div>
-                    <input type="text" placeholder="First Name"><br>
-                    <input type="text" placeholder="Last Name"><br>
-                    <input type="email" placeholder="Email"><br>
-                    <input type="password" placeholder="Password"><br>
-                    <input type="password" placeholder="Repeat Password"><br>
+                    <input type="text" placeholder="First Name" pattern="[a-zA-Z]+" required><br>
+                    <input type="text" placeholder="Last Name" pattern="[a-zA-Z]+" required><br>
+                    <input type="email" placeholder="Email" required><br>
+                    <input type="password" placeholder="Password" required><br>
+                    <input type="password" placeholder="Repeat Password" required><br>
                     <input type="submit" name="register" value="REGISTER">
                     
-                </div>
+                </form>
             
                 <div id="login">
                 
