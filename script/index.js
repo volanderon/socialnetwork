@@ -23,7 +23,7 @@ $(function() {
                     $('.error').slideDown().find('span').html(error);
                 } else {
                     $('.error').slideUp();
-                    //window.location = 'account.php';
+                    window.location = 'account.php';
                 }
             },
             dataType: 'json'

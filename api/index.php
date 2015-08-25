@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 // Get the Slim framework
 require 'Slim/Slim.php';
 \Slim\Slim::registerAutoloader();
@@ -11,7 +14,11 @@ $app->contentType( 'application/json' );
 
 // Get the class that controls all the users functions
 require_once dirname( __FILE__ ) . '/../core/Users.class.php';
-$user = new user();
+$user = new User();
+
+// Get the class that controls all the login functions
+require_once dirname( __FILE__ ) . '/../core/Login.class.php';
+$login = new Login();
 
 // GET Route /user/ - Fetch the list of all the users
 /*
@@ -42,7 +49,7 @@ $app->get( '/user/:id/', function( $id ) use ( $user ) {
  *	Notice that this route is the same as the above (Like GET)
  *	The only difference between them is the HTTP Method that has been sent
  */
-$app->post( '/user/', function() use ( $user, $app ) {
+$app->post( '/user/', function() use ( $user, $app, $login ) {
 	/*
 	 *	What the hell is $app->request->getBody()?
 	 *	getBody is a method inside the Slim framework that 
@@ -62,8 +69,12 @@ $app->post( '/user/', function() use ( $user, $app ) {
 	$data = json_decode( $user_details, true );
 
 	// And finally send all the array to the createNewuser method
-	$success = $user->createNewUser( $data );
-    echo json_encode($success);
+	$error = $user->createNewUser( $data );
+    if (!$error) {
+        $login->fillSession($data);
+    }
+
+    echo json_encode($error);
 });
 
 $app->delete( '/user/:id/', function( $id ) use ( $user ) {
@@ -85,7 +96,6 @@ $app->put( '/user/:id/', function( $id ) use ( $user, $app ) {
 require_once dirname( __FILE__ ) . '/../core/Login.class.php';
 
 $app->post( '/login/', function() use ( $app ) {
-	$login = new Login();
 	$username = $app->request->post('username');
 	$password = $app->request->post('password');
 

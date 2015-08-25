@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE HTML>
 
 <html>
@@ -25,7 +29,7 @@
     <div id="header-wrapper">
         <header>
 
-            <div class="logo"></div>
+            <div class="logo"><a href="index.php"></a></div>
             <div class="header-menu">
                 <div class="menu-visitor">Hello <strong>Visitor</strong></div>
             </div>

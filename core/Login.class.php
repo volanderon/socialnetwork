@@ -1,14 +1,16 @@
 <?php
 
-class Login{
+class Login {
 
     private $_db;
 
     public function __construct(){
-        $this->_db = DB::getResource();
+        $this->_db = DB::getInstance();
     }
 
-
+    public function fillSession($user) {
+        $_SESSION['auth'] = $user;
+    }
 
     public function checkEmailAvailable($email){
         $query = "SELECT * FROM users WHERE user_email ='$email'; ";
