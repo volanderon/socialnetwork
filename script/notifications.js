@@ -1,0 +1,7 @@
+var Notifications = {
+
+};
+
+$(function() {
+
+});

@@ -1,0 +1,7 @@
+var Account = {
+
+};
+
+$(function() {
+
+});
