@@ -20,5 +20,7 @@ class Login {
         return  $result->num_rows;
     }
 
-
+    public function logout() {
+        $_SESSION['auth'] = null;
+    }
 }

@@ -93,13 +93,15 @@ $app->put( '/user/:id/', function( $id ) use ( $user, $app ) {
 
 
 
-require_once dirname( __FILE__ ) . '/../core/Login.class.php';
-
-$app->post( '/login/', function() use ( $app ) {
+$app->post( '/login/', function() use ( $app, $login ) {
 	$username = $app->request->post('username');
 	$password = $app->request->post('password');
 
 	var_dump( $login->match( $username, $password ) );
+});
+
+$app->post( '/logout', function() use ( $login ) {
+    $login->logout();
 });
 
 $app->run();
