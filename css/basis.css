@@ -101,6 +101,7 @@ input[type='text'], input[type='email'], input[type='password'] {
 }
 
 .error {
+    display: none;
     width: 290px;
     height: 52px;
     margin-bottom: 10px;

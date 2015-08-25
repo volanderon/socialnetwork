@@ -10,7 +10,7 @@ $app = new \Slim\Slim();
 $app->contentType( 'application/json' );
 
 // Get the class that controls all the users functions
-require_once dirname( __FILE__ ) . '/../core/user.class.php';
+require_once dirname( __FILE__ ) . '/../core/Users.class.php';
 $user = new user();
 
 // GET Route /user/ - Fetch the list of all the users
@@ -59,15 +59,11 @@ $app->post( '/user/', function() use ( $user, $app ) {
 	 *	json_decode gets a string and return object
 	 *	if we add "true" in the second param we'll get an array
 	 */
-	$user = json_decode( $new_user, true );
+	$data = json_decode( $user_details, true );
 
 	// And finally send all the array to the createNewuser method
-	$success = $user->createNewUser( $user );
-
-	// if ( $success )
-		// echo 1;
-	// else
-		// echo 0;
+	$success = $user->createNewUser( $data );
+    echo json_encode($success);
 });
 
 $app->delete( '/user/:id/', function( $id ) use ( $user ) {
