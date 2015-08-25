@@ -1,3 +1,4 @@
+<?php include_once 'inc/guard.php'; ?>
 <?php include_once 'inc/header.html'; ?>
 
 

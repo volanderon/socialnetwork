@@ -1,2 +1,1 @@
-<?php
-
+<?php include_once 'inc/guard.php'; ?>
