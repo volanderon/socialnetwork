@@ -40,7 +40,7 @@
             <div class="box-title">My Details</div>
             <div class="details bold">
                 <span class="user-fullName"><?php echo $_SESSION['auth']['user_firstname'] . ' ' . $_SESSION['auth']['user_lastname']; ?></span><br>
-                <span class="user-birthDate">[birthDate]</span>
+                <span class="user-birthDate"><?php echo $_SESSION['auth']['user_birthdate'] ?></span>
                 <span class="user-age">([age])</span><br>
                 <span class="user-email"><?php echo $_SESSION['auth']['user_email']; ?></span><br>
             </div>

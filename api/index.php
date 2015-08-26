@@ -26,8 +26,7 @@ $login = new Login();
  *	Why do we use it? Because the var $user (that contains the user object)
  *	is written outside(!) of the function, and we want to use it
  */
-$app->get( '/user/', function() use ( $user ) {
-	
+$app->get( '/users', function() use ( $user ) {
 	$user_list = $user->getAllUsers();
 	echo json_encode( $user_list );
 });
@@ -40,7 +39,7 @@ $app->get( '/user/', function() use ( $user ) {
  *	We have to pass the id (:id) from the URI to the function
  *	because we need to use this id
  */
-$app->get( '/user/:id/', function( $id ) use ( $user ) {
+$app->get( '/user/:id', function( $id ) use ( $user ) {
 	echo json_encode( $user->getUserById( $id ) );
 });
 
@@ -49,7 +48,7 @@ $app->get( '/user/:id/', function( $id ) use ( $user ) {
  *	Notice that this route is the same as the above (Like GET)
  *	The only difference between them is the HTTP Method that has been sent
  */
-$app->post( '/user/', function() use ( $user, $app, $login ) {
+$app->post( '/user', function() use ( $user, $app, $login ) {
 	/*
 	 *	What the hell is $app->request->getBody()?
 	 *	getBody is a method inside the Slim framework that 
@@ -74,14 +73,13 @@ $app->post( '/user/', function() use ( $user, $app, $login ) {
     echo json_encode($error);
 });
 
-$app->delete( '/user/:id/', function( $id ) use ( $user ) {
+$app->delete( '/user/:id', function( $id ) use ( $user ) {
 	echo $user->deleteUser( $id );
 });
 
-$app->put( '/user/:id/', function( $id ) use ( $user, $app ) {
-	$details = json_decode( $app->request->getBody() );
-
-	echo $user->updateUser( $id, $details );
+$app->put( '/user', function() use ( $user, $app, $login ) {
+	$details = json_decode( $app->request->getBody(), true );
+	echo json_encode($user->updateUserGeneral( $_SESSION['auth']['user_id'], $details, $login ));
 });
 
 

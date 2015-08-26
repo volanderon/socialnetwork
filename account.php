@@ -14,21 +14,25 @@
                 Edit your profile information
             </div>
 
-            <div id="account-form">
+            <form id="account-form" data-birthdate="<?php echo $_SESSION['auth']['user_birthdate'] ?>">
 
+                <div id="update-user-error" class="error">
+                    Error<br>
+                    <span></span>
+                </div>
                 <div>
                     <div>First Name</div>
-                    <input type="text" name="firstName">
+                    <input type="text" name="firstName" value="<?php echo $_SESSION['auth']['user_firstname'] ?>" required>
                     <div>Enter your first name</div>
                 </div>
                 <div>
                     <div>Last Name</div>
-                    <input type="text" name="lastName">
+                    <input type="text" name="lastName" value="<?php echo $_SESSION['auth']['user_lastname'] ?>" required>
                     <div>Enter your last name</div>
                 </div>
                 <div>
                     <div>Email</div>
-                    <input type="email" name="email">
+                    <input type="email" name="email" value="<?php echo $_SESSION['auth']['user_email'] ?>" required>
                     <div>E-mail will not be displayed</div>
                 </div>
                 <div>
@@ -54,18 +58,18 @@
                 </div>
                 <div>
                     <div>Website</div>
-                    <input type="url" name="firstName">
+                    <input type="url" name="website">
                     <div>If you have a blog, personal page, enter it</div>
                 </div>
                 <div>
                     <div>About Me</div>
-                    <textarea rows="5" cols="50" name="firstName"></textarea>
+                    <textarea rows="5" cols="50" name="about" required><?php echo $_SESSION['auth']['user_about'] ?></textarea>
                     <div>About you (160 characters or less)</div>
                 </div>
-                <button name="saveChanges">Save Changes</button>
+                <button id="update-user-btn" name="saveChanges">Save Changes</button>
 
 
-            </div>
+            </form>
 
         </div>
         

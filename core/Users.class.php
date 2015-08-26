@@ -44,6 +44,38 @@ class User {
         return $ret;
     }
 
+    public function updateUserGeneral( $user_id, $details, $login ) {
+        $ret = '';
+
+        if (!preg_match("/^[a-zA-Z]+$/", $details[0]['value'])) {
+            $ret = 'Bad first name format';
+            return $ret;
+        }
+        if (!preg_match("/^[a-zA-Z]+$/", $details[1]['value'])) {
+            $ret = 'Bad last name format';
+            return $ret;
+        }
+        if (!filter_var($details[2]['value'], FILTER_VALIDATE_EMAIL)) {
+            $ret = 'Bad email format';
+            return $ret;
+        }
+
+        $this->_db->query( "UPDATE " . TBL_USERS . " SET user_email='".$details[2]['value']."' WHERE user_id={$user_id}");
+        if (mysqli_errno($this->_db) === 1062) {
+            $ret = 'This email is already taken';
+        }
+
+        $birthdate = "{$details[5]['value']}-{$details[4]['value']}-{$details[3]['value']}";
+        $this->_db->query( "UPDATE " . TBL_USERS_INFO . " SET user_firstname='{$details[0]['value']}', user_lastname='{$details[1]['value']}', " .
+            "user_birthdate='{$birthdate}', user_about='{$details[9]['value']}' WHERE user_id={$user_id}");
+
+        if (!$ret) {
+            $login->fillSession($this->getUserById($user_id));
+        }
+
+        return $ret;
+    }
+
     public function getAllUsers() {
         $users = $this->_db->query( "SELECT * FROM " . TBL_USERS );
 
