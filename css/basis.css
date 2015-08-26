@@ -9,9 +9,6 @@
 @font-face {
   font-family: 'SourceSansProLight';
   src: url('../fonts/SourceSansPro-Light.otf');
-  h1 {
-    color: red;
-  }
 }
 html,
 body,
@@ -113,8 +110,20 @@ input[type='submit'] {
 input[name='register'] {
   background-color: #67a72a;
 }
+input[name='register']:hover {
+  background-color: #5a9325;
+}
+input[name='register']:active {
+  background-color: #4e7e20;
+}
 input[name='login'] {
   background-color: #4098b5;
+}
+input[name='login']:hover {
+  background-color: #3988a2;
+}
+input[name='login']:active {
+  background-color: #33788f;
 }
 input:focus {
   outline: none;
