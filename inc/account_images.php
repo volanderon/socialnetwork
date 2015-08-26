@@ -12,7 +12,7 @@
         <button id="upload-photo-btn" name="uploadPhoto">Upload Photo</button>
     </div>
     <div class="box-subTitle">
-        <img class="box-user-icon" src="">
+        <img src="user_content/covers/<?php echo $_SESSION['auth']['user_secret_picture']; ?>">
         <input id="cover-input" type="file" name="cover">
         <button id="upload-cover-btn" name="uploadCover">Upload Cover</button>
     </div>

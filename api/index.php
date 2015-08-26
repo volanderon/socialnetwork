@@ -89,8 +89,13 @@ $app->put( '/user', function() use ( $user, $app, $login ) {
 /**
  * User profile
  */
+
 $app->post( '/uploadPhoto', function() use ( $user, $app, $login ) {
     echo json_encode($user->uploadPhoto( $_SESSION['auth']['user_id'], $_FILES['photo'], $login ));
+});
+
+$app->post( '/uploadCover', function() use ( $user, $app, $login ) {
+    echo json_encode($user->uploadCover( $_SESSION['auth']['user_id'], $_FILES['cover'], $login ));
 });
 
 

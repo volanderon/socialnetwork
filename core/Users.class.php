@@ -77,13 +77,21 @@ class User {
     }
 
     public function uploadPhoto( $user_id, $photo, $login ) {
-        $info = new SplFileInfo($photo['name']);
+        return $this->uploadImage($user_id, $photo, $login, 'photos', 'user_profile_picture');
+    }
+
+    public function uploadCover( $user_id, $photo, $login ) {
+        return $this->uploadImage($user_id, $photo, $login, 'covers', 'user_secret_picture');
+    }
+
+    private function uploadImage($user_id, $img, $login, $folder, $table_field) {
+        $info = new SplFileInfo($img['name']);
         $ext = $info->getExtension();
         $filename = $user_id . '.' . $ext;
-        move_uploaded_file($photo['tmp_name'], '../user_content/photos/' . $filename);
-        $this->_db->query( "UPDATE " . TBL_USERS_INFO . " SET user_profile_picture='{$filename}' WHERE user_id={$user_id}");
+        move_uploaded_file($img['tmp_name'], "../user_content/{$folder}/" . $filename);
+        $this->_db->query( "UPDATE " . TBL_USERS_INFO . " SET {$table_field}='{$filename}' WHERE user_id={$user_id}");
         $login->fillSession($this->getUserById($user_id));
-        return $photo;
+        return $img;
     }
 
     public function getAllUsers() {

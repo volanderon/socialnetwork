@@ -40,21 +40,20 @@ var Account = {
         });
         return false;
     },
-    uploadPhoto: function() {
-        var fileSelect = document.getElementById('photo-input');
-        var file = fileSelect.files[0];
-        var formData = new FormData();
+    uploadImage: function(id, name, url) {
+        var file = $(id)[0].files[0],
+            formData = new FormData();
 
         if (file.type.match('image.*')) {
-            formData.append('photo', file);
+            formData.append(name, file);
         }
 
         $.ajax({
-            url: 'api/uploadPhoto',
+            url: url,
             data: formData,
             processData: false,
             contentType: false,
-            type: 'POST',
+            type: 'POST'
         });
     },
     selectTab: function() {
@@ -72,5 +71,10 @@ $(function() {
     $('#update-user-btn').on('click', Account.updateUser);
 
     // Images tab
-    $('#upload-photo-btn').on('click', Account.uploadPhoto);
+    $('#upload-photo-btn').on('click', function() {
+        Account.uploadImage('#photo-input', 'photo', 'api/uploadPhoto');
+    });
+    $('#upload-cover-btn').on('click', function() {
+        Account.uploadImage('#cover-input', 'cover', 'api/uploadCover');
+    });
 });
