@@ -1,26 +1,27 @@
 <?php include_once 'inc/guard.php'; ?>
-<?php include_once 'inc/header.html'; ?>
+<?php include_once 'inc/header.php'; ?>
 
+    <div id="my-photos-page">
+        <div id="left-section">
 
-    <div id="left-section">
+            <div class="box">
 
-        <div class="box">
+                aaa
 
-            aaa
-
-        </div>
-
-    </div>
-
-
-    <div id="right-section">
-
-        <div class="box">
-
-            bbb
+            </div>
 
         </div>
 
+
+        <div id="right-section">
+
+            <div class="box">
+
+                bbb
+
+            </div>
+
+        </div>
     </div>
 
-<?php include_once 'inc/footer.html'; ?>
+<?php include_once 'inc/footer.php'; ?>

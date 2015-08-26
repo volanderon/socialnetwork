@@ -39,10 +39,16 @@ var Account = {
             dataType: 'json'
         });
         return false;
+    },
+    selectTab: function() {
+        var selected_tab = $(this).data('tab');
+        $('#left-section .box').hide();
+        $('#tab-' + selected_tab).fadeIn('normal');
     }
 };
 
 $(function() {
     Account.populateBirthdaySelects();
     $('#update-user-btn').on('click', Account.updateUser);
+    $('#account-tabs').on('click', '.box-subTitle', Account.selectTab);
 });

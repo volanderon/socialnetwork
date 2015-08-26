@@ -1,13 +1,20 @@
-#account-form {
+#account-page #right-section .box-subTitle {
+  cursor: pointer;
+}
+#account-page #tab-images,
+#account-page #tab-password {
+  display: none;
+}
+#account-page #account-form {
   padding: 10px 40px 40px 40px;
 }
-#account-form > div {
+#account-page #account-form > div {
   margin: 20px 0;
 }
-#account-form > div > div:first-child {
+#account-page #account-form > div > div:first-child {
   display: inline-block;
   width: 30%;
 }
-#account-form > div > div:last-child {
+#account-page #account-form > div > div:last-child {
   margin-left: 30%;
 }
