@@ -77,4 +77,10 @@ $(function() {
     $('#upload-cover-btn').on('click', function() {
         Account.uploadImage('#cover-input', 'cover', 'api/uploadCover');
     });
+    $("#photo-input").on('change', function(){
+        Utils.previewImage(this, $('#photo-img'));
+    });
+    $("#cover-input").on('change', function(){
+        Utils.previewImage(this, $('#cover-img'));
+    });
 });
