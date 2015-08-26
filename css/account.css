@@ -1,0 +1,13 @@
+#account-form {
+  padding: 10px 40px 40px 40px;
+}
+#account-form > div {
+  margin: 20px 0;
+}
+#account-form > div > div:first-child {
+  display: inline-block;
+  width: 30%;
+}
+#account-form > div > div:last-child {
+  margin-left: 30%;
+}
