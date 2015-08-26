@@ -76,6 +76,16 @@ class User {
         return $ret;
     }
 
+    public function uploadPhoto( $user_id, $photo, $login ) {
+        $info = new SplFileInfo($photo['name']);
+        $ext = $info->getExtension();
+        $filename = $user_id . '.' . $ext;
+        move_uploaded_file($photo['tmp_name'], '../user_content/photos/' . $filename);
+        $this->_db->query( "UPDATE " . TBL_USERS_INFO . " SET user_profile_picture='{$filename}' WHERE user_id={$user_id}");
+        $login->fillSession($this->getUserById($user_id));
+        return $photo;
+    }
+
     public function getAllUsers() {
         $users = $this->_db->query( "SELECT * FROM " . TBL_USERS );
 

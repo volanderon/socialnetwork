@@ -20,6 +20,10 @@ $user = new User();
 require_once dirname( __FILE__ ) . '/../core/Login.class.php';
 $login = new Login();
 
+/**
+ * User
+ */
+
 // GET Route /user/ - Fetch the list of all the users
 /*
  *	"use ( $user )" is like "global $user"
@@ -82,11 +86,17 @@ $app->put( '/user', function() use ( $user, $app, $login ) {
 	echo json_encode($user->updateUserGeneral( $_SESSION['auth']['user_id'], $details, $login ));
 });
 
+/**
+ * User profile
+ */
+$app->post( '/uploadPhoto', function() use ( $user, $app, $login ) {
+    echo json_encode($user->uploadPhoto( $_SESSION['auth']['user_id'], $_FILES['photo'], $login ));
+});
 
 
-
-
-
+/**
+ * Login
+ */
 
 $app->post( '/login', function() use ( $app, $login ) {
     $body = json_decode($app->request->getBody());

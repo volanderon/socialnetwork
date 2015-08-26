@@ -40,6 +40,23 @@ var Account = {
         });
         return false;
     },
+    uploadPhoto: function() {
+        var fileSelect = document.getElementById('photo-input');
+        var file = fileSelect.files[0];
+        var formData = new FormData();
+
+        if (file.type.match('image.*')) {
+            formData.append('photo', file);
+        }
+
+        $.ajax({
+            url: 'api/uploadPhoto',
+            data: formData,
+            processData: false,
+            contentType: false,
+            type: 'POST',
+        });
+    },
     selectTab: function() {
         var selected_tab = $(this).data('tab');
         $('#left-section .box').hide();
@@ -48,7 +65,12 @@ var Account = {
 };
 
 $(function() {
+    $('#account-tabs').on('click', '.box-subTitle', Account.selectTab);
+
+    // General tab
     Account.populateBirthdaySelects();
     $('#update-user-btn').on('click', Account.updateUser);
-    $('#account-tabs').on('click', '.box-subTitle', Account.selectTab);
+
+    // Images tab
+    $('#upload-photo-btn').on('click', Account.uploadPhoto);
 });

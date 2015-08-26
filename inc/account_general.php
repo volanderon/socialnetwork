@@ -1,7 +1,7 @@
 <div id="tab-general" class="box">
 
     <div class="box-title">
-        <img class="box-user-icon" src="">
+        <img class="box-user-icon" src="user_content/photos/<?php echo $_SESSION['auth']['user_profile_picture']; ?>">
         General Settings
     </div>
     <div class="box-subTitle">

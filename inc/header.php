@@ -28,7 +28,7 @@
             <div class="logo"><a href="home.php"></a></div>
             <div class="header-menu">
                 <span class="header-user-name"><?php echo $_SESSION['auth']['user_firstname']; ?></span>
-                <img class="header-user-icon" src="">
+                <img class="header-user-icon" src="user_content/photos/<?php echo $_SESSION['auth']['user_profile_picture']; ?>">
                 <a href="notifications.php"><div class="header-notification-icon"></div></a>
                 <a href="account.php"><div class="header-account-icon"></div></a>
                 <a href="home.php"><div class="header-home-icon"></div></a>
