@@ -22,12 +22,12 @@
                 </div>
                 <div>
                     <div>First Name</div>
-                    <input type="text" name="firstName" value="<?php echo $_SESSION['auth']['user_firstname'] ?>" required>
+                    <input type="text" name="firstName" value="<?php echo $_SESSION['auth']['user_firstname'] ?>" pattern="[a-zA-Z]+" required>
                     <div>Enter your first name</div>
                 </div>
                 <div>
                     <div>Last Name</div>
-                    <input type="text" name="lastName" value="<?php echo $_SESSION['auth']['user_lastname'] ?>" required>
+                    <input type="text" name="lastName" value="<?php echo $_SESSION['auth']['user_lastname'] ?>" pattern="[a-zA-Z]+" required>
                     <div>Enter your last name</div>
                 </div>
                 <div>
@@ -63,7 +63,7 @@
                 </div>
                 <div>
                     <div>About Me</div>
-                    <textarea rows="5" cols="50" name="about" required><?php echo $_SESSION['auth']['user_about'] ?></textarea>
+                    <textarea rows="5" cols="50" name="about" maxlength="160" required><?php echo $_SESSION['auth']['user_about'] ?></textarea>
                     <div>About you (160 characters or less)</div>
                 </div>
                 <button id="update-user-btn" name="saveChanges">Save Changes</button>
