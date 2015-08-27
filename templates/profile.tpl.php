@@ -4,7 +4,9 @@
     <div id="profile-cover" class="box">
         <img src="user_content/covers/<?php echo $viewedUser['user_secret_picture']; ?>">
         <div class="pc-footer">
-            <img src="user_content/photos/<?php echo $viewedUser['user_profile_picture']; ?>">
+            <a href="profile.php?user_id=<?php echo $viewedUser['user_id']; ?>">
+                <img src="user_content/photos/<?php echo $viewedUser['user_profile_picture']; ?>">
+            </a>
             <?php echo $viewedUser['full_name']; ?>
         </div>
     </div>

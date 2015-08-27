@@ -34,6 +34,15 @@ var Posts = {
         });
         Posts.offset += 3;
     },
+    loadSinglePost: function() {
+        $.ajax({
+            type: "GET",
+            url: "api/post/" + $('#posts').data('post-id'),
+            success: function(post) {
+                $('#posts').append(Posts.buildPostHtml(post));
+            }
+        });
+    },
     buildPostHtml: function(post) {
         return '<div class="box post clear-fix" data-post-id="' + post.post_id + '">' +
                 '<div class="clear-fix">' +
@@ -66,6 +75,11 @@ var Posts = {
 };
 
 $(function() {
+    if ($('#post-page').length) {
+        Posts.loadSinglePost();
+        return;
+    }
+
     if (!$('#home-page').length && !$('#profile-page').length) {
         return;
     }

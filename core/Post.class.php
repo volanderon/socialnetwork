@@ -18,19 +18,32 @@ class Post{
         return $post;
     }
 
-    public function getPosts($user_id, $offset = 0, $limit = 3){
+    public function getPosts($user_id, $post_id, $offset = 0, $limit = 3){
         // TODO: use $user_id to fetch only user's posts and posts written on user's profile
-        $post = $this->_db->query("
-					SELECT posts.post_id, posts.post_content, posts.post_created, posts.user_id, user_firstname, user_lastname, user_profile_picture
-					FROM users_info INNER JOIN posts WHERE posts.user_id = users_info.user_id ORDER BY posts.post_created DESC LIMIT {$offset}, {$limit};
-					");
         $posts = array();
-        while ($row = mysqli_fetch_assoc ($post))
-            $posts[] = $row;
+        $sql = "SELECT posts.post_id, posts.post_content, posts.post_created, posts.user_id, user_firstname, user_lastname, user_profile_picture
+                FROM users_info INNER JOIN posts WHERE posts.user_id = users_info.user_id";
+
+        if ($post_id) {
+            $sql .= " AND posts.post_id={$post_id}";
+            $post = $this->_db->query($sql);
+            $posts[] = mysqli_fetch_assoc($post);
+        } else {
+            $sql .= " ORDER BY posts.post_created DESC LIMIT {$offset}, {$limit}";
+            $post = $this->_db->query($sql);
+            while ($row = mysqli_fetch_assoc($post)) {
+                $posts[] = $row;
+            }
+        }
+
         return $posts;
     }
 
+    public function getPostById($post_id) {
+        return $this->getPosts(null, $post_id, 0, 1)[0];
+    }
+
     public function getLastPost() {
-        return $this->getPosts(null, 0, 1)[0];
+        return $this->getPosts(null, null, 0, 1)[0];
     }
 }

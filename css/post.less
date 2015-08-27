@@ -1,16 +1,23 @@
-.post {
-  position: relative;
-  .post-content {
-    padding: 0 12px 12px 12px;
+#posts {
+  &.no-delete {
+    .post-delete {
+      display: none;
+    }
   }
-  .post-delete {
-    background: url(../images/icons/delete.png) no-repeat;
-    width: 16px;
-    height: 16px;
-    position: absolute;
-    top: 15px;
-    right: 8px;
-    background-size: 100%;
-    cursor: pointer;
+  .post {
+    position: relative;
+    .post-content {
+      padding: 0 12px 12px 12px;
+    }
+    .post-delete {
+      background: url(../images/icons/delete.png) no-repeat;
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      top: 15px;
+      right: 8px;
+      background-size: 100%;
+      cursor: pointer;
+    }
   }
 }
