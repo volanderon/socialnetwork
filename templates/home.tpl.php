@@ -26,19 +26,7 @@
 
     <div id="right-section">
 
-        <div class="clear-fix box">
-            <div class="box-title">Welcome</div>
-            <a href="profile.php?user_id=<?php echo $_SESSION['auth']['user_id']; ?>">
-                <img class="user-welcome-pic" src="user_content/photos/<?php echo $_SESSION['auth']['user_profile_picture']; ?>">
-            </a>
-            <div class="details">
-                <a href="profile.php?user_id=<?php echo $_SESSION['auth']['user_id']; ?>">
-                    <span class="user-firstName"><?php echo $_SESSION['auth']['user_firstname']; ?></span>
-                </a>
-                <br>
-                <a href="account.php">Edit Profile</a>
-            </div>
-        </div>
+        <?php require_once 'partials/welcome-box.tpl.php'; ?>
 
         <div class="clear-fix box">
             <div class="box-title">My Details</div>
@@ -50,14 +38,7 @@
             </div>
         </div>
 
-        <div class="clear-fix box">
-            <div class="box-title"><a href="friends.php">My Friends</a> (<?php echo $friends['count']; ?>)</div>
-            <?php foreach($friends['friends'] as $friend): ?>
-                <a href="profile.php?user_id=<?php echo $friend['user_id']; ?>">
-                    <img class="friend-pic" title="<?php echo $friend['user_firstname']; ?>" src="user_content/photos/<?php echo $friend['user_profile_picture']; ?>">
-                </a>
-            <?php endforeach; ?>
-        </div>
+        <?php require_once 'partials/friends-box.tpl.php'; ?>
 
     </div>
 </div>

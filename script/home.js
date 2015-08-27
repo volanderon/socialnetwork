@@ -39,8 +39,8 @@ var Home = {
                 '<div class="clear-fix">' +
                     '<img class="user-welcome-pic" src="user_content/photos/' + post.user_profile_picture + '">' +
                     '<div class="details">' +
-                        post.user_firstname + ' ' + post.user_lastname + '<br>' +
-                        post.post_created +
+                        '<a href="profile.php?user_id=' + post.user_id + '">' + post.user_firstname + ' ' + post.user_lastname + '</a><br>' +
+                        '<a href="post.php?post_id=' + post.post_id + '">' + post.post_created + '</a>' +
                     '</div>' +
                 '</div>' +
                 '<div class="post-content">' + post.post_content + '</div>' +
