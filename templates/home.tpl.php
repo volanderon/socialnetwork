@@ -18,9 +18,20 @@
 
         </div>
 
-        <div class="box post">
-
-        </div>
+        <?php foreach($posts as $post): ?>
+            <div class="box post">
+                <div class="clear-fix">
+                    <img class="user-welcome-pic" src="user_content/photos/<?php echo $post['user_profile_picture']; ?>">
+                    <div class="details">
+                        <?php echo $post['user_firstname']; ?> <?php echo $post['user_lastname']; ?><br>
+                        <?php echo $post['post_created']; ?>
+                    </div>
+                </div>
+                <div>
+                    <?php echo $post['post_content']; ?>
+                </div>
+            </div>
+        <?php endforeach; ?>
 
     </div>
 
