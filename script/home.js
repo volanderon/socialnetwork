@@ -15,6 +15,20 @@ var Home = {
 
             }
         });
+    },
+    deletePost: function() {
+        if (!confirm('Are you sure')) {
+            return;
+        }
+        var post = $(this).parents('.post'), post_id = post.data('post-id');
+        $.ajax({
+            type: "DELETE",
+            url: "api/post",
+            data: JSON.stringify(post_id),
+            success: function() {
+                post.slideUp(function() { $(this).remove(); });
+            }
+        });
     }
 };
 
@@ -24,4 +38,5 @@ $(function() {
     }
 
     $('#new-post-btn').on('click', Home.addNewPost);
+    $('body').on('click', '.post-delete', Home.deletePost);
 });

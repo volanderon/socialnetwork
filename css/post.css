@@ -1,0 +1,13 @@
+.post {
+  position: relative;
+}
+.post .post-delete {
+  background: url(../images/icons/delete.png) no-repeat;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 15px;
+  right: 8px;
+  background-size: 100%;
+  cursor: pointer;
+}

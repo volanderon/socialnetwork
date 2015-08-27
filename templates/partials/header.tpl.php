@@ -6,6 +6,7 @@
 
     <link rel="stylesheet" href="css/basis.css">
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/post.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/account.css">
     <script src="script/jquery-2.1.4.min.js"></script>

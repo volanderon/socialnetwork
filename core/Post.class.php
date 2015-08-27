@@ -8,9 +8,13 @@ class Post{
         $this->_db = DB::getInstance();
     }
 
-
     public function publishPost($user_id, $content){
         $post = $this->_db->query("INSERT INTO posts (post_id, user_id, post_content, post_created) VALUES (NULL, '$user_id', '$content', CURRENT_TIME())");
+        return $post;
+    }
+
+    public function deletePost($user_id, $post_id) {
+        $post = $this->_db->query("DELETE FROM posts WHERE post_id={$post_id} AND user_id={$user_id}");
         return $post;
     }
 

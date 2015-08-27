@@ -19,7 +19,7 @@
         </div>
 
         <?php foreach($posts as $post): ?>
-            <div class="box post">
+            <div class="box post" data-post-id="<?php echo $post['post_id']; ?>">
                 <div class="clear-fix">
                     <img class="user-welcome-pic" src="user_content/photos/<?php echo $post['user_profile_picture']; ?>">
                     <div class="details">
@@ -30,6 +30,7 @@
                 <div>
                     <?php echo $post['post_content']; ?>
                 </div>
+                <div class="post-delete"></div>
             </div>
         <?php endforeach; ?>
 

@@ -118,6 +118,11 @@ $app->post( '/post', function() use ( $post, $app ) {
     echo json_encode($post->publishPost( $_SESSION['auth']['user_id'], $content ));
 });
 
+$app->delete( '/post', function() use ( $post, $app ) {
+    $post_id = json_decode( $app->request->getBody() );
+    echo json_encode($post->deletePost( $_SESSION['auth']['user_id'], $post_id ));
+});
+
 /**
  * Login
  */
