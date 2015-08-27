@@ -131,11 +131,11 @@ $app->delete( '/post', function() use ( $post, $app ) {
  * Login
  */
 
-$app->post( '/login', function() use ( $app, $login ) {
+$app->post( '/login', function() use ( $app, $login, $user ) {
     $body = json_decode($app->request->getBody());
 	$email = $body[0]->value;
 	$password = $body[1]->value;
-    $status = $login->login( $email, $password );
+    $status = $login->login( $email, $password, $user );
 
     echo json_encode($status);
 });

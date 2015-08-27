@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/post.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/account.css">
+    <link rel="stylesheet" href="css/profile.css">
     <script src="script/jquery-2.1.4.min.js"></script>
     <script src="script/utils.js"></script>
     <script src="script/posts.js"></script>
