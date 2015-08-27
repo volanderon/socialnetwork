@@ -19,6 +19,7 @@ class Post{
     }
 
     public function getPosts($user_id, $offset = 0, $limit = 3){
+        // TODO: use $user_id to fetch only user's posts and posts written on user's profile
         $post = $this->_db->query("
 					SELECT posts.post_id, posts.post_content, posts.post_created, posts.user_id, user_firstname, user_lastname, user_profile_picture
 					FROM users_info INNER JOIN posts WHERE posts.user_id = users_info.user_id ORDER BY posts.post_created DESC LIMIT {$offset}, {$limit};

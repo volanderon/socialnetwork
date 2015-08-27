@@ -8,6 +8,7 @@
     <title>Welcome to Socialily+ - Register, Login</title>
     <link rel="stylesheet" href="css/basis.css">
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/index.css">
     <script src="script/jquery-2.1.4.min.js"></script>
     <script src="script/utils.js"></script>
     <script src="script/index.js"></script>

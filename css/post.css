@@ -1,6 +1,9 @@
 .post {
   position: relative;
 }
+.post .post-content {
+  padding: 0 12px 12px 12px;
+}
 .post .post-delete {
   background: url(../images/icons/delete.png) no-repeat;
   width: 16px;

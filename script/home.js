@@ -35,7 +35,7 @@ var Home = {
         Home.offset += 3;
     },
     buildPostHtml: function(post) {
-        return '<div class="box post" data-post-id="' + post.post_id + '">' +
+        return '<div class="box post clear-fix" data-post-id="' + post.post_id + '">' +
                 '<div class="clear-fix">' +
                     '<img class="user-welcome-pic" src="user_content/photos/' + post.user_profile_picture + '">' +
                     '<div class="details">' +
@@ -43,7 +43,9 @@ var Home = {
                         post.post_created +
                     '</div>' +
                 '</div>' +
-                '<div>' + post.post_content + '</div>' +
+                '<div class="post-content">' + post.post_content + '</div>' +
+                '<div class="box-title"><span>Like</span> - <span>Comment</span></div>' +
+                '<div class="box-title"><img class="header-user-icon" src="user_content/photos/' + post.user_profile_picture + '"><input type="text" placeholder="Leave a comment..."></div>' +
                 ($('body').data('curr-user-id') == post.user_id ? '<div class="post-delete"></div>' : '') +
             '</div>';
     },
