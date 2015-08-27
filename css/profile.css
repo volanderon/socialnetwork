@@ -1,13 +1,13 @@
-#profile-page #profile-cover {
+#profile-cover {
   height: 300px;
   overflow: hidden;
   margin: 20px 0 0 0;
   position: relative;
 }
-#profile-page #profile-cover > img {
+#profile-cover > img {
   width: 100%;
 }
-#profile-page #profile-cover .pc-footer {
+#profile-cover .pc-footer {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -17,7 +17,7 @@
   line-height: 50px;
   text-indent: 130px;
 }
-#profile-page #profile-cover .pc-footer img {
+#profile-cover .pc-footer img {
   border-radius: 50px;
   margin: -65px 0 0 10px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);

@@ -19,6 +19,9 @@
   border-radius: 4px;
   box-shadow: 0 0 3px #E0E0E0;
 }
+.box.align-vertical {
+  line-height: 70px;
+}
 .box-title {
   padding: 10px 0 10px 15px;
   background: #f6f7f7;
