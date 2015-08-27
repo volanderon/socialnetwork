@@ -4,6 +4,9 @@
         Profile Settings
     </div>
     <div class="box-subTitle">
+        <div class="success">
+            Success
+        </div>
         Change your account picture
     </div>
     <div class="box-subTitle">

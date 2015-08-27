@@ -94,6 +94,21 @@ class User {
         return $img;
     }
 
+    public function changePassword($user_id, $passwords) {
+        $ret = '';
+        $user = $this->getUserById($user_id);
+
+        if ($user['user_password'] !== md5($passwords[0]['value'])) {
+            $ret = 'Old Password is incorrect';
+        } else if (!$passwords[1]['value'] || $passwords[1]['value'] !== $passwords[2]['value']) {
+            $ret = 'New Passwords do not match';
+        } else {
+            $this->_db->query( "UPDATE " . TBL_USERS . " SET user_password='".md5($passwords[1]['value'])."' WHERE user_id={$user_id}");
+        }
+
+        return $ret;
+    }
+
     public function getAllUsers() {
         $users = $this->_db->query( "SELECT * FROM " . TBL_USERS );
 

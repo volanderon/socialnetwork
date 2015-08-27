@@ -64,8 +64,8 @@ if (isset($_SESSION['auth'])) {
                         <input name="first_name" type="text" placeholder="First Name" pattern="[a-zA-Z]+" required><br>
                         <input name="last_name" type="text" placeholder="Last Name" pattern="[a-zA-Z]+" required><br>
                         <input name="email" type="email" placeholder="Email" required><br>
-                        <input name="password" type="password" placeholder="Password" required><br>
-                        <input name="password_confirm" type="password" placeholder="Repeat Password" required><br>
+                        <input name="password" type="password" placeholder="Password" minlength="4" required><br>
+                        <input name="password_confirm" type="password" placeholder="Repeat Password" minlength="4" required><br>
                         <input id="reg-btn" type="submit" name="register" value="REGISTER">
 
                     </form>
@@ -76,7 +76,7 @@ if (isset($_SESSION['auth'])) {
                             <span></span>
                         </div>
                         <input type="email" name="email" placeholder="Email" required><br>
-                        <input type="password" name="password" placeholder="Password" required><br>
+                        <input type="password" name="password" placeholder="Password" minlength="4" required><br>
                         <input id="login-btn" type="submit" name="login" value="LOGIN">
 
                     </form>

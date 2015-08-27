@@ -3,7 +3,9 @@ var Account = {
      * Populate day, month & year selects with values
      */
     populateBirthdaySelects: function() {
-        var days_html = '', months_html = '', years_html = '',
+        var days_html = '<option value="">Choose</option>',
+            months_html = '<option value="">Choose</option>',
+            years_html = '<option value="">Choose</option>',
             months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             current_year = new Date().getFullYear(),
             birthdate = $('#account-form').data('birthdate').split('-');
@@ -22,18 +24,21 @@ var Account = {
     },
     updateUser: function() {
         var form = $('#account-form'), data = JSON.stringify(form.serializeArray());
+        $('.error, .success').hide();
+
         if (!form[0].checkValidity()) {
             return;
         }
+
         $.ajax({
             type: "PUT",
             url: "api/user",
             data: data,
             success: function( error ) {
                 if (error) {
-                    $('#update-user-error').slideDown().find('span').html(error);
+                    $('#left-section > div:visible .error').slideDown().find('span').html(error);
                 } else {
-                    $('#update-user-error').slideUp();
+                    $('#left-section > div:visible .success').slideDown();
                 }
             },
             dataType: 'json'
@@ -43,6 +48,11 @@ var Account = {
     uploadImage: function(id, name, url) {
         var file = $(id)[0].files[0],
             formData = new FormData();
+        $('.error, .success').hide();
+
+        if (!file) {
+            return;
+        }
 
         if (file.type.match('image.*')) {
             formData.append(name, file);
@@ -53,8 +63,41 @@ var Account = {
             data: formData,
             processData: false,
             contentType: false,
-            type: 'POST'
+            type: 'POST',
+            success: function() {
+                $('#left-section > div:visible .success').slideDown();
+            }
         });
+    },
+    changePassword: function() {
+        var form = $('form#change-password-form'), data;
+        $('.error, .success').hide();
+
+        if ($('[name="newPassword"]').val() && $('[name="newPassword"]').val() !== $('[name="repeatNewPassword"]').val()) {
+            $('[name="repeatNewPassword"]')[0].setCustomValidity('Passwords Don\'t Match');
+        } else {
+            $('[name="repeatNewPassword"]')[0].setCustomValidity('');
+        }
+        if (!form[0].checkValidity()) {
+            return;
+        }
+
+        data = JSON.stringify(form.serializeArray());
+        $.ajax({
+            type: "PUT",
+            url: "api/changePassword",
+            data: data,
+            success: function( error ) {
+                if (error) {
+                    $('#left-section > div:visible .error').slideDown().find('span').html(error);
+                } else {
+                    form[0].reset();
+                    $('#left-section > div:visible .success').slideDown();
+                }
+            },
+            dataType: 'json'
+        });
+        return false;
     },
     selectTab: function() {
         var selected_tab = $(this).data('tab');
@@ -64,6 +107,10 @@ var Account = {
 };
 
 $(function() {
+    if (!$('#account-page').length) {
+        return;
+    }
+
     $('#account-tabs').on('click', '.box-subTitle', Account.selectTab);
 
     // General tab
@@ -83,4 +130,7 @@ $(function() {
     $("#cover-input").on('change', function(){
         Utils.previewImage(this, $('#cover-img'));
     });
+
+    // Password tab
+    $('#change-password-btn').on('click', Account.changePassword);
 });

@@ -98,6 +98,11 @@ $app->post( '/uploadCover', function() use ( $user, $app, $login ) {
     echo json_encode($user->uploadCover( $_SESSION['auth']['user_id'], $_FILES['cover'], $login ));
 });
 
+$app->put( '/changePassword', function() use ( $user, $app ) {
+    $passwords = json_decode( $app->request->getBody(), true );
+    echo json_encode($user->changePassword( $_SESSION['auth']['user_id'], $passwords ));
+});
+
 
 /**
  * Login

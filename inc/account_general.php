@@ -10,9 +10,12 @@
 
     <form id="account-form" class="account-form" data-birthdate="<?php echo $_SESSION['auth']['user_birthdate'] ?>">
 
-        <div id="update-user-error" class="error">
+        <div class="error">
             Error<br>
             <span></span>
+        </div>
+        <div class="success">
+            Success
         </div>
         <div>
             <div>First Name</div>
