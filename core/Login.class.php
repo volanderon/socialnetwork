@@ -9,6 +9,9 @@ class Login {
     }
 
     public function fillSession($user) {
+        $year_seconds = 31556926;
+        $user['user_birthdate_hebrew'] = date("d/m/Y", strtotime($user['user_birthdate']));
+        $user['age'] = floor((time() - strtotime($user['user_birthdate'])) / $year_seconds);
         $_SESSION['auth'] = $user;
     }
 

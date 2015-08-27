@@ -1,8 +1,6 @@
-<?php include_once 'inc/guard.php'; ?>
-<?php include_once 'inc/header.php'; ?>
+<?php
 
-<div id="profile-page">
+require_once 'inc/bootstrap.inc.php';
+require_once 'inc/guard.inc.php';
 
-</div>
-
-<?php include_once 'inc/footer.php'; ?>
+require_once 'templates/profile.tpl.php';

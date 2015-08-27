@@ -3,7 +3,7 @@ var MyPhotos = {
 };
 
 $(function() {
-    if (!$('#my-photos-page').length) {
+    if (!$('#friends-page').length) {
         return;
     }
 });

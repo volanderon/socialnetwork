@@ -29,10 +29,10 @@
             <div class="header-menu">
                 <span class="header-user-name"><?php echo $_SESSION['auth']['user_firstname']; ?></span>
                 <img class="header-user-icon" src="user_content/photos/<?php echo $_SESSION['auth']['user_profile_picture']; ?>">
-                <a href="notifications.php"><div class="header-notification-icon"></div></a>
-                <a href="account.php"><div class="header-account-icon"></div></a>
-                <a href="home.php"><div class="header-home-icon"></div></a>
-                <a id="logout" href="#"><div class="header-logout-icon"></div></a>
+                <a title="Home" href="home.php"><div class="header-notification-icon"></div></a>
+                <a title="Edit Profile" href="account.php"><div class="header-account-icon"></div></a>
+                <a title="Notifications" href="notifications.php"><div class="header-home-icon"></div></a>
+                <a title="Logout" id="logout" href="#"><div class="header-logout-icon"></div></a>
             </div>
 
         </header>
