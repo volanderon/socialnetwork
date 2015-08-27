@@ -28,9 +28,14 @@
 
         <div class="box">
             <div class="box-title">Welcome</div>
-            <img class="user-welcome-pic" src="user_content/photos/<?php echo $_SESSION['auth']['user_profile_picture']; ?>">
+            <a href="profile.php?user_id=<?php echo $_SESSION['auth']['user_id']; ?>">
+                <img class="user-welcome-pic" src="user_content/photos/<?php echo $_SESSION['auth']['user_profile_picture']; ?>">
+            </a>
             <div class="details">
-                <span class="user-firstName"><?php echo $_SESSION['auth']['user_firstname']; ?></span><br>
+                <a href="profile.php?user_id=<?php echo $_SESSION['auth']['user_id']; ?>">
+                    <span class="user-firstName"><?php echo $_SESSION['auth']['user_firstname']; ?></span>
+                </a>
+                <br>
                 <a href="account.php">Edit Profile</a>
             </div>
         </div>
@@ -46,9 +51,11 @@
         </div>
 
         <div class="clear-fix box">
-            <div class="box-title">My Friends</div>
-            <?php foreach($friends_arr as $friend): ?>
-                <img class="friend-pic" src="user_content/photos/<?php echo $friend['user_profile_picture']; ?>">
+            <div class="box-title"><a href="friends.php">My Friends</a> (<?php echo $friends['count']; ?>)</div>
+            <?php foreach($friends['friends'] as $friend): ?>
+                <a href="profile.php?user_id=<?php echo $friend['user_id']; ?>">
+                    <img class="friend-pic" title="<?php echo $friend['user_firstname']; ?>" src="user_content/photos/<?php echo $friend['user_profile_picture']; ?>">
+                </a>
             <?php endforeach; ?>
         </div>
 

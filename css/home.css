@@ -73,6 +73,7 @@ input[name='post'] {
   position: relative;
   align-items: center;
   font-size: 14px;
+  float: left;
 }
 .user-welcome-pic ~ .details {
   top: 7px;
