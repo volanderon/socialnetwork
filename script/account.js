@@ -11,7 +11,7 @@ var Account = {
             days_html += '<option ' + (birthdate[2] == i ? 'selected' : '') + ' value="' + i + '">' + i + '</option>';
         }
         for (var j = 1; j <= 12; j++) {
-            months_html += '<option ' + (birthdate[1] == j ? 'selected' : '') + ' value="' + j + '">' + months[j] + '</option>';
+            months_html += '<option ' + (birthdate[1] == j ? 'selected' : '') + ' value="' + j + '">' + months[j-1] + '</option>';
         }
         for (var k = current_year; k >= current_year - 100; k--) {
             years_html += '<option ' + (birthdate[0] == k ? 'selected' : '') + ' value="' + k + '">' + k + '</option>';

@@ -1,7 +1,7 @@
 <?php include_once 'inc/guard.php'; ?>
 <?php include_once 'inc/header.php'; ?>
 
-    <div id="my-photos-page">
+    <div id="notifications-page">
         <div id="left-section">
 
             <div class="box">

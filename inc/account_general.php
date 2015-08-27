@@ -8,7 +8,7 @@
         Edit your profile information
     </div>
 
-    <form id="account-form" data-birthdate="<?php echo $_SESSION['auth']['user_birthdate'] ?>">
+    <form id="account-form" class="account-form" data-birthdate="<?php echo $_SESSION['auth']['user_birthdate'] ?>">
 
         <div id="update-user-error" class="error">
             Error<br>
@@ -31,15 +31,15 @@
         </div>
         <div>
             <div>Birth Date</div>
-            <select id="birth-day" name="birthDay"></select>
-            <select id="birth-month" name="birthMonth"></select>
-            <select id="birth-year" name="birthYear"></select>
+            <select id="birth-day" name="birthDay" required></select>
+            <select id="birth-month" name="birthMonth" required></select>
+            <select id="birth-year" name="birthYear" required></select>
             <div>Select the date you were born</div>
         </div>
         <div>
             <div>Gender</div>
-            <select name="gender">
-                <option value="0">No Gender</option>
+            <select name="gender" required>
+                <option value="">No Gender</option>
                 <option value="1">Male</option>
                 <option value="2">Female</option>
             </select>

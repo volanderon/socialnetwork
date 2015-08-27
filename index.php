@@ -86,4 +86,4 @@ if (isset($_SESSION['auth'])) {
         </div>
     </div>
     
-<?php require_once '/inc/footer.php' ?>
+<?php require_once 'inc/footer.php' ?>

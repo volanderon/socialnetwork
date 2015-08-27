@@ -50,6 +50,9 @@ var Index = {
 };
 
 $(function() {
+    if (!$('#index-page').length) {
+        return;
+    }
     $('#reg-btn').on('click', Index.register);
     $('#login-btn').on('click', Index.login);
 });
