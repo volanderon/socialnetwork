@@ -18,6 +18,10 @@ require_once dirname( __FILE__ ) . '/../lib/DB.class.php';
 require_once dirname( __FILE__ ) . '/../core/Users.class.php';
 $user = new User();
 
+// Get the class that controls all the users functions
+require_once dirname( __FILE__ ) . '/../core/Post.class.php';
+$post = new Post();
+
 // Get the class that controls all the login functions
 require_once dirname( __FILE__ ) . '/../core/Login.class.php';
 $login = new Login();
@@ -105,6 +109,14 @@ $app->put( '/changePassword', function() use ( $user, $app ) {
     echo json_encode($user->changePassword( $_SESSION['auth']['user_id'], $passwords ));
 });
 
+/**
+ * Posts
+ */
+
+$app->post( '/post', function() use ( $post, $app ) {
+    $content = json_decode( $app->request->getBody() );
+    echo json_encode($post->publishPost( $_SESSION['auth']['user_id'], $content ));
+});
 
 /**
  * Login

@@ -9,10 +9,8 @@ class Post{
     }
 
 
-    public function publishPost($details){
-        $post = $this->_db->query("
-					INSERT INTO socialityplus.posts (post_id, user_id, post_content, post_created) VALUES (NULL, '$details[user_id]', '$details[post_content]', CURRENT_TIME())
-					");
+    public function publishPost($user_id, $content){
+        $post = $this->_db->query("INSERT INTO posts (post_id, user_id, post_content, post_created) VALUES (NULL, '$user_id', '$content', CURRENT_TIME())");
         return $post;
     }
 

@@ -10,10 +10,10 @@
                 <span class="user-firstName"><?php echo $_SESSION['auth']['user_firstname']; ?>, Update your status</span>
             </div>
 
-            <textarea class="post-content" placeholder="What's on your mind?"></textarea>
+            <textarea id="new-post-content" class="post-content" placeholder="What's on your mind?"></textarea>
 
             <div class="post-status">
-                <input type="submit" name="post" value="Post">
+                <input id="new-post-btn" type="submit" name="post" value="Post">
             </div>
 
         </div>
