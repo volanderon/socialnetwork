@@ -15,8 +15,4 @@ $postsModel = new Post();
 $friends = $friendsModel->getAllFriends($_SESSION['auth']['user_id'], 6);
 shuffle($friends['friends']);
 
-// Get posts
-$posts = $postsModel->showFirstPosts();
-
-
 require_once 'templates/home.tpl.php';

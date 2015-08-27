@@ -4,6 +4,7 @@
 
 <head>
 
+    <link rel="shortcut icon" type="image/png" href="images/favicon.ico"/>
     <title>Welcome to Socialily+ - Register, Login</title>
     <link rel="stylesheet" href="css/basis.css">
     <link rel="stylesheet" href="css/header.css">

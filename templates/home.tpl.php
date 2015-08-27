@@ -18,21 +18,9 @@
 
         </div>
 
-        <?php foreach($posts as $post): ?>
-            <div class="box post" data-post-id="<?php echo $post['post_id']; ?>">
-                <div class="clear-fix">
-                    <img class="user-welcome-pic" src="user_content/photos/<?php echo $post['user_profile_picture']; ?>">
-                    <div class="details">
-                        <?php echo $post['user_firstname']; ?> <?php echo $post['user_lastname']; ?><br>
-                        <?php echo $post['post_created']; ?>
-                    </div>
-                </div>
-                <div>
-                    <?php echo $post['post_content']; ?>
-                </div>
-                <div class="post-delete"></div>
-            </div>
-        <?php endforeach; ?>
+        <div id="posts"></div>
+
+        <input id="load-more-posts-btn" type="button" value="Load More">
 
     </div>
 

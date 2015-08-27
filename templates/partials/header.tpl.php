@@ -4,6 +4,7 @@
 
 <head>
 
+    <link rel="shortcut icon" type="image/png" href="images/favicon.ico"/>
     <link rel="stylesheet" href="css/basis.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/post.css">
@@ -21,7 +22,7 @@
 
 </head>
 
-<body>
+<body data-curr-user-id="<?php echo $_SESSION['auth']['user_id']; ?>">
 
     <div id="header-wrapper">
         <header>
