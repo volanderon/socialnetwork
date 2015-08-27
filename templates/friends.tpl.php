@@ -1,6 +1,6 @@
 <?php require_once 'partials/header.tpl.php'; ?>
 
-<div id="friends-page">
+<div id="friends-page" class="clear-fix">
     friends list
 </div>
 

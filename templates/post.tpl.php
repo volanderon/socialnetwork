@@ -1,6 +1,6 @@
 <?php require_once 'partials/header.tpl.php'; ?>
 
-<div id="post-page">
+<div id="post-page" class="clear-fix">
 
 </div>
 

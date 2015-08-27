@@ -30,7 +30,7 @@
 
     <div id="wrapper">
 
-        <div id="index-wrapper">
+        <div id="index-wrapper" class="clear-fix">
             <main>
 
                 <div id="welcome">

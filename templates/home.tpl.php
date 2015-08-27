@@ -1,6 +1,6 @@
 <?php require_once 'partials/header.tpl.php'; ?>
 
-<div id="home-page">
+<div id="home-page" class="clear-fix">
     <div id="left-section">
 
         <div class="box update-status">
@@ -26,7 +26,7 @@
 
     <div id="right-section">
 
-        <div class="box">
+        <div class="clear-fix box">
             <div class="box-title">Welcome</div>
             <a href="profile.php?user_id=<?php echo $_SESSION['auth']['user_id']; ?>">
                 <img class="user-welcome-pic" src="user_content/photos/<?php echo $_SESSION['auth']['user_profile_picture']; ?>">
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <div class="box">
+        <div class="clear-fix box">
             <div class="box-title">My Details</div>
             <div class="details bold">
                 <span class="user-fullName"><?php echo $_SESSION['auth']['user_firstname'] . ' ' . $_SESSION['auth']['user_lastname']; ?></span><br>

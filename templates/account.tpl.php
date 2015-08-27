@@ -1,6 +1,6 @@
 <?php require_once 'partials/header.tpl.php'; ?>
 
-<div id="account-page">
+<div id="account-page" class="clear-fix">
     <div id="left-section">
 
         <?php require_once 'partials/account_general.tpl.php'; ?>

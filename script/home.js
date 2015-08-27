@@ -6,13 +6,14 @@ var Home = {
             alert('Please type something...');
             return;
         }
+        $('#new-post-content').val('');
 
         $.ajax({
             type: "POST",
             url: "api/post",
             data: JSON.stringify(content),
-            success: function() {
-
+            success: function(post) {
+                $('#posts').prepend(Home.buildPostHtml(post)).find('.post:first-child').hide().slideDown();
             }
         });
     },
@@ -22,25 +23,29 @@ var Home = {
             type: "GET",
             url: "api/posts/" + Home.offset + "/3",
             success: function(posts) {
+                if (!posts.length) {
+                    $('#load-more-posts-btn').remove();
+                }
                 $.each(posts, function(key, post) {
-                    console.log(post);
-                    $('#posts').append(
-                        '<div class="box post" data-post-id="' + post.post_id + '">' +
-                            '<div class="clear-fix">' +
-                                '<img class="user-welcome-pic" src="user_content/photos/' + post.user_profile_picture + '">' +
-                                '<div class="details">' +
-                                    post.user_firstname + ' ' + post.user_lastname + '<br>' +
-                                    post.post_created +
-                                '</div>' +
-                            '</div>' +
-                            '<div>' + post.post_content + '</div>' +
-                            ($('body').data('curr-user-id') == post.user_id ? '<div class="post-delete"></div>' : '') +
-                        '</div>'
-                    );
+                    $('#posts').append(Home.buildPostHtml(post));
                 });
+                $('#posts .box').slice(-3).hide().slideDown()
             }
         });
         Home.offset += 3;
+    },
+    buildPostHtml: function(post) {
+        return '<div class="box post" data-post-id="' + post.post_id + '">' +
+                '<div class="clear-fix">' +
+                    '<img class="user-welcome-pic" src="user_content/photos/' + post.user_profile_picture + '">' +
+                    '<div class="details">' +
+                        post.user_firstname + ' ' + post.user_lastname + '<br>' +
+                        post.post_created +
+                    '</div>' +
+                '</div>' +
+                '<div>' + post.post_content + '</div>' +
+                ($('body').data('curr-user-id') == post.user_id ? '<div class="post-delete"></div>' : '') +
+            '</div>';
     },
     deletePost: function() {
         if (!confirm('Are you sure')) {

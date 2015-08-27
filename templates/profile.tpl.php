@@ -1,6 +1,6 @@
 <?php require_once 'partials/header.tpl.php'; ?>
 
-<div id="profile-page">
+<div id="profile-page" class="clear-fix">
     user's profile
 </div>
 

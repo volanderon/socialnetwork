@@ -9,8 +9,8 @@ class Post{
     }
 
     public function publishPost($user_id, $content){
-        $post = $this->_db->query("INSERT INTO posts (post_id, user_id, post_content, post_created) VALUES (NULL, '$user_id', '$content', CURRENT_TIME())");
-        return $post;
+        $this->_db->query("INSERT INTO posts (post_id, user_id, post_content, post_created) VALUES (NULL, '$user_id', '$content', CURRENT_TIME())");
+        return $this->getLastPost();
     }
 
     public function deletePost($user_id, $post_id) {
@@ -27,5 +27,9 @@ class Post{
         while ($row = mysqli_fetch_assoc ($post))
             $posts[] = $row;
         return $posts;
+    }
+
+    public function getLastPost() {
+        return $this->getPosts(null, 0, 1)[0];
     }
 }
