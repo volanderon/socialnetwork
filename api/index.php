@@ -12,6 +12,8 @@ $app = new \Slim\Slim();
 // Set the HTTP Header of the Content-Type (MIME Type) to be JSON
 $app->contentType( 'application/json' );
 
+require_once dirname( __FILE__ ) . '/../lib/DB.class.php';
+
 // Get the class that controls all the users functions
 require_once dirname( __FILE__ ) . '/../core/Users.class.php';
 $user = new User();

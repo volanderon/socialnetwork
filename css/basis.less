@@ -153,3 +153,12 @@ input:focus {
 .bold {
   font-weight: bold;
 }
+
+.clear-fix:before,
+.clear-fix:after {
+  content: " "; /* 1 */
+  display: table; /* 2 */
+}
+.clear-fix:after {
+  clear: both;
+}

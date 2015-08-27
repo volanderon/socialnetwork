@@ -45,9 +45,9 @@
             </div>
         </div>
 
-        <div class="box">
+        <div class="clear-fix box">
             <div class="box-title">My Friends</div>
-            <?php foreach($friends as $friend): ?>
+            <?php foreach($friends_arr as $friend): ?>
                 <img class="friend-pic" src="user_content/photos/<?php echo $friend['user_profile_picture']; ?>">
             <?php endforeach; ?>
         </div>

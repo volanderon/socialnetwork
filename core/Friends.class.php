@@ -1,6 +1,5 @@
 <?php
 
-
 class Friends {
 
     private $_db;
@@ -15,7 +14,7 @@ class Friends {
      */
 
     public function __construct () {
-        $this->_db = DB::getResource();
+        $this->_db = DB::getInstance();
     }
 
 
@@ -25,13 +24,13 @@ class Friends {
      * This function returns an array of all friends ID for the user.
      *
      * @param (int) ( $id ) The ID of the user asks his friend list
-     * @return (array) ( $friends ) num array with friends ID
+     * @return array ( $friends ) num array with friends ID
      */
 
     public function getAllFriends( $id ){
 
-        $query = "(SELECT user_friend_id FROM friends WHERE user_id = $id)
-				UNION (SELECT user_id FROM friends WHERE user_friend_id = $id)";
+        $query = "(SELECT " . TBL_USERS_INFO . ".* FROM friends INNER JOIN " . TBL_USERS_INFO . " ON friends.user_friend_id=" . TBL_USERS_INFO . ".user_id WHERE friends.user_id = $id)
+				UNION (SELECT " . TBL_USERS_INFO . ".* FROM friends INNER JOIN " . TBL_USERS_INFO . " ON friends.user_id=" . TBL_USERS_INFO . ".user_id WHERE friends.user_friend_id = $id)";
 
         $results = $this->_db->query($query);
 
@@ -42,6 +41,5 @@ class Friends {
         }
         return $friends;
     }
-
 
 };

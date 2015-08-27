@@ -1,5 +1,4 @@
 <?php
-require_once dirname( __FILE__ ) . '/../lib/DB.class.php';
 
 class User {
     private $_db;
