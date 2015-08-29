@@ -72,7 +72,7 @@ var Posts = {
                     '<img class="user-welcome-pic" src="user_content/photos/' + post.user_profile_picture + '">' +
                     '<div class="details">' +
                         '<a href="profile.php?user_id=' + post.user_id + '">' + post.user_firstname + ' ' + post.user_lastname + '</a><br>' +
-                        '<a href="post.php?post_id=' + post.post_id + '">' + post.post_created + '</a>' +
+                        '<a href="post.php?post_id=' + post.post_id + '">' + moment(post.post_created, "YYYY-MM-DD h:mm:ss").fromNow() + '</a>' +
                     '</div>' +
                 '</div>' +
                 '<div class="post-content">' + post.post_content + '</div>' +

@@ -114,6 +114,6 @@ class Post{
      * @return mixed
      */
     public function getLastPost() {
-        return $this->getPosts(null, null, 0, 1)[0];
+        return $this->getPosts(null, null, 0, 1)['posts'][0];
     }
 }
