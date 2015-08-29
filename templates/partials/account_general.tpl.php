@@ -40,25 +40,6 @@
             <div>Select the date you were born</div>
         </div>
         <div>
-            <div>Gender</div>
-            <select name="gender" required>
-                <option value="">No Gender</option>
-                <option value="1">Male</option>
-                <option value="2">Female</option>
-            </select>
-            <div>Select your gender (male or female)</div>
-        </div>
-        <div>
-            <div>Location</div>
-            <input type="text" name="location">
-            <div>Where do you live?</div>
-        </div>
-        <div>
-            <div>Website</div>
-            <input type="url" name="website">
-            <div>If you have a blog, personal page, enter it</div>
-        </div>
-        <div>
             <div>About Me</div>
             <textarea rows="5" cols="50" name="about" maxlength="160" required><?php echo $_SESSION['auth']['user_about'] ?></textarea>
             <div>About you (160 characters or less)</div>

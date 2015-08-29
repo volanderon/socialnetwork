@@ -43,9 +43,6 @@
 #account-page .account-form select:nth-child(2) {
   width: 50px !important;
 }
-#account-page .account-form select[name="gender"] {
-  width: 110px !important;
-}
 #account-page .account-form textarea {
   resize: none;
 }
