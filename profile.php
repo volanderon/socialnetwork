@@ -11,6 +11,10 @@ $usersModel = new User();
 require_once dirname( __FILE__ ) . '/core/Friends.class.php';
 $friendsModel = new Friends();
 
+// Friends model
+require_once dirname( __FILE__ ) . '/core/Post.class.php';
+$postsModel = new Post();
+
 // Get viewed user
 $viewedUser = $usersModel->getUserById((int)$_GET['user_id']);
 
@@ -25,5 +29,6 @@ $page['friends_box_title'] = 'Friends';
 $page['is_me'] = (int)$viewedUser['user_id'] === (int)$_SESSION['auth']['user_id'];
 $page['viewed_user'] = $viewedUser;
 $page['friend'] = $friendsModel->getFriendStatus($_SESSION['auth']['user_id'], $viewedUser['user_id']);
+$page['periods'] = $postsModel->getPeriods($viewedUser['user_id']);
 
 require_once 'templates/profile.tpl.php';

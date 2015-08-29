@@ -67,8 +67,16 @@ class Post{
         return $this->_db->query("DELETE FROM  " . TBL_LIKES . " WHERE user_id={$user_id} AND post_id={$post_id}");
     }
 
-    public function getPosts($user_id, $post_id, $offset = 0, $limit = 3) {
-        // TODO: use $user_id to fetch only user's posts and posts written on user's profile
+    /**
+     * Get posts according to various criteria, allows to filter by date periods
+     * @param $type
+     * @param $user_id
+     * @param $post_id
+     * @param int $offset
+     * @param int $limit
+     * @return array
+     */
+    public function getPosts($type, $user_id, $post_id, $offset = 0, $limit = 3) {
         $posts = array();
         $sql = "SELECT posts.post_id, post_content, post_created, posts.user_id, user_firstname, user_lastname, user_profile_picture, GROUP_CONCAT(likes.user_id SEPARATOR '-') AS 'likes_users'
                 FROM users_info
@@ -83,8 +91,16 @@ class Post{
             $post = $this->_db->query($sql);
             $posts[] = mysqli_fetch_assoc($post);
         } else {
-            if ($user_id) {
-                // User profile view
+            if ($type === 'by_me') {
+                // User profile view - "posts by me" filter
+                $sql .= " AND posts.user_id={$user_id}";
+            }
+            else if ($user_id) {
+                // User profile view - all filters other than "posts by me"
+                if ($type !== 'all') {
+                    // User profile view - date periods
+                    $sql .= " AND post_created BETWEEN '{$type}'";
+                }
                 $sql .= " AND (posts.user_id={$user_id} OR post_to_friend_id={$user_id})";
             }
             $sql .= " GROUP BY posts.post_id ORDER BY posts.post_created DESC LIMIT {$offset}, {$limit}";
@@ -153,7 +169,7 @@ class Post{
      * @return mixed
      */
     public function getPostById($post_id) {
-        return $this->getPosts(null, $post_id, 0, 1);
+        return $this->getPosts('all', null, $post_id, 0, 1);
     }
 
     /**
@@ -161,7 +177,7 @@ class Post{
      * @return mixed
      */
     private function getLastPost() {
-        return $this->getPosts(null, null, 0, 1)['posts'][0];
+        return $this->getPosts('all', null, null, 0, 1)['posts'][0];
     }
 
     /**
@@ -172,5 +188,21 @@ class Post{
     private function getLastComment($post_id) {
         $first_comment = array_pop($this->getComments($post_id));
         return [$first_comment['post_id'] => [$first_comment]];
+    }
+
+    /**
+     * Generate time periods from posts, to display as a filter on profile page
+     * @param $user_id
+     * @return array
+     */
+    public function getPeriods($user_id) {
+        $posts = $this->getPosts('all', $user_id, null, 0, 9999);
+        $dates = [];
+        foreach ($posts['posts'] as $post) {
+            $time = strtotime($post['post_created']);
+            $time_plus_1month = strtotime('+1 month', strtotime($post['post_created']));
+            $dates[date('Y-m-00', $time) . '\' AND \'' . date('Y-m-00', $time_plus_1month)] = date('F - Y', $time);
+        }
+        return $dates;
     }
 }

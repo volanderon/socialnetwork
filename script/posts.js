@@ -77,6 +77,7 @@ var Posts = {
         });
         Posts.post_offsets[post_id] += 5;
     },
+    show_type: 'all',
     offset: 0,
     /**
      * Loads x amount of posts from offset y each time it is called
@@ -85,7 +86,7 @@ var Posts = {
     loadMorePosts: function(is_profile_page) {
         $.ajax({
             type: "GET",
-            url: "api/posts/" + (is_profile_page ? viewedUser.user_id : 0) + '/' + Posts.offset + "/3",
+            url: "api/posts/" + Posts.show_type + "/" + (is_profile_page ? viewedUser.user_id : 0) + '/' + Posts.offset + "/3",
             success: function(data) {
                 var len = data['posts'].length;
                 $.each(data['posts'], function(key, post) {

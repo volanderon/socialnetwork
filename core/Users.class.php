@@ -66,7 +66,7 @@ class User {
 
         $birthdate = "{$details[5]['value']}-{$details[4]['value']}-{$details[3]['value']}";
         $this->_db->query( "UPDATE " . TBL_USERS_INFO . " SET user_firstname='{$details[0]['value']}', user_lastname='{$details[1]['value']}', " .
-            "user_birthdate='{$birthdate}', user_about='{$details[9]['value']}' WHERE user_id={$user_id}");
+            "user_birthdate='{$birthdate}', user_about='{$details[6]['value']}' WHERE user_id={$user_id}");
 
         if (!$ret) {
             $login->fillSession($this->getUserById($user_id));
