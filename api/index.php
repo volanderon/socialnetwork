@@ -140,6 +140,11 @@ $app->delete( '/friend', function() use ( $friend, $app ) {
     echo json_encode($friend->deleteFriend( $_SESSION['auth']['user_id'], $data->friend_id ));
 });
 
+$app->delete( '/friends', function() use ( $friend, $app ) {
+    $data = json_decode( $app->request->getBody() );
+    echo json_encode($friend->deleteFriends( $_SESSION['auth']['user_id'], $data->friends_to_remove ));
+});
+
 /**
  * Login
  */

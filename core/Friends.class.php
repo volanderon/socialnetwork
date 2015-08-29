@@ -50,6 +50,19 @@ class Friends {
     }
 
     /**
+     * Delete an array of users (accepts user IDs)
+     * @param $user_id
+     * @param $friends_to_remove
+     * @return bool
+     */
+    public function deleteFriends($user_id, $friends_to_remove) {
+        foreach ($friends_to_remove as $friend_id) {
+            $this->_db->query("DELETE FROM friends WHERE (user_id={$user_id} AND user_friend_id={$friend_id} OR user_id={$friend_id} AND user_friend_id={$user_id})");
+        }
+        return true;
+    }
+
+    /**
      *  getAllFriends
      *
      * This function returns an array of all friends ID for the user.
