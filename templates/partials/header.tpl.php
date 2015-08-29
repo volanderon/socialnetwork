@@ -16,14 +16,15 @@
     <script src="script/utils.js"></script>
     <script src="script/posts.js"></script>
     <script src="script/account.js"></script>
-    <script src="script/home.js"></script>
     <script src="script/index.js"></script>
-    <script src="script/my_photos.js"></script>
     <script src="script/notifications.js"></script>
-    <script src="script/post.js"></script>
     <script src="script/profile.js"></script>
+    <script src="script/friends.js"></script>
     <script>
         var auth = JSON.parse('<?php echo json_encode($_SESSION['auth']); ?>');
+        <?php if (isset($page) && $page['viewed_user']): ?>
+            var viewedUser = JSON.parse('<?php echo json_encode($page['viewed_user']); ?>');
+        <?php endif; ?>
     </script>
 
 </head>

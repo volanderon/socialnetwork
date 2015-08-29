@@ -23,5 +23,7 @@ shuffle($friends['friends']);
 
 $page['friends_box_title'] = 'Friends';
 $page['is_me'] = (int)$viewedUser['user_id'] === (int)$_SESSION['auth']['user_id'];
+$page['viewed_user'] = $viewedUser;
+$page['friend'] = $friendsModel->getFriendStatus($_SESSION['auth']['user_id'], $viewedUser['user_id']);
 
 require_once 'templates/friends.tpl.php';
