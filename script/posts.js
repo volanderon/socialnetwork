@@ -76,11 +76,12 @@ var Posts = {
     offset: 0,
     /**
      * Loads x amount of posts from offset y each time it is called
+     * @param is_profile_page
      */
-    loadMorePosts: function() {
+    loadMorePosts: function(is_profile_page) {
         $.ajax({
             type: "GET",
-            url: "api/posts/" + Posts.offset + "/3",
+            url: "api/posts/" + (is_profile_page ? viewedUser.user_id : 0) + '/' + Posts.offset + "/3",
             success: function(data) {
                 var len = data['posts'].length;
                 $.each(data['posts'], function(key, post) {
@@ -242,20 +243,29 @@ var Posts = {
 
 $(function() {
     var body = $('body'),
+        is_home_page = $('#home-page').length,
+        is_profile_page = $('#profile-page').length,
         is_post_page = $('#post-page').length;
 
-    if (!$('#home-page').length && !$('#profile-page').length && !is_post_page) {
+    if (!is_home_page && !is_profile_page && !is_post_page) {
         return;
     }
 
     if (is_post_page) {
         Posts.loadSinglePost();
+    } else if (is_profile_page) {
+        Posts.loadMorePosts(true);
+        $('#load-more-posts-btn').on('click', function() {
+            Posts.loadMorePosts(true);
+        });
     } else {
-        Posts.loadMorePosts();
+        Posts.loadMorePosts(false);
+        $('#load-more-posts-btn').on('click', function() {
+            Posts.loadMorePosts(false);
+        });
     }
 
     $('#new-post-btn').on('click', Posts.addNewPost);
-    $('#load-more-posts-btn').on('click', Posts.loadMorePosts);
     body.on('click', '.post-delete', Posts.deletePost);
     body.on('click', '.post-like-btn', Posts.likePost);
     body.on('click', '.post-comment-btn', Posts.commentOnPost);

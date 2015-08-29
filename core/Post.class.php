@@ -72,10 +72,15 @@ class Post{
                 WHERE posts.user_id = users_info.user_id";
 
         if ($post_id) {
+            // Single post view
             $sql .= " AND posts.post_id={$post_id} GROUP BY posts.post_id";
             $post = $this->_db->query($sql);
             $posts[] = mysqli_fetch_assoc($post);
         } else {
+            if ($user_id) {
+                // User profile view
+                $sql .= " AND posts.user_id={$user_id}";
+            }
             $sql .= " GROUP BY posts.post_id ORDER BY posts.post_created DESC LIMIT {$offset}, {$limit}";
             $post = $this->_db->query($sql);
             while ($row = mysqli_fetch_assoc($post)) {

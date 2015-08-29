@@ -81,8 +81,8 @@ $app->put( '/changePassword', function() use ( $user, $app ) {
  * Posts
  */
 
-$app->get( '/posts/:offset/:limit', function($offset, $limit) use ( $post, $app ) {
-    echo json_encode($post->getPosts( $_SESSION['auth']['user_id'], null, $offset, $limit ));
+$app->get( '/posts/:user_id/:offset/:limit', function($user_id, $offset, $limit) use ( $post, $app ) {
+    echo json_encode($post->getPosts( $user_id, null, $offset, $limit ));
 });
 
 $app->get( '/post/:id', function($id) use ( $post ) {

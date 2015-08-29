@@ -27,6 +27,16 @@
   width: 100px;
   height: 100px;
 }
+#profile-cover .pc-footer .pc-is-friend {
+  background: url('../images/sprites.png') 3px -273px no-repeat;
+  width: 40px;
+  height: 40px;
+  zoom: 0.5;
+  display: inline-block;
+  margin: 0 0 0 10px;
+  top: 6px;
+  position: relative;
+}
 #profile-cover .pc-actions {
   float: right;
   margin: 10px 10px 0 0;

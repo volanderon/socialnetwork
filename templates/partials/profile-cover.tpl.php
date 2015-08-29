@@ -5,6 +5,9 @@
             <img src="user_content/photos/<?php echo $viewedUser['user_profile_picture']; ?>">
         </a>
         <?php echo $viewedUser['full_name']; ?>
+        <?php if ($page['friend']['is_friend']): ?>
+            <div class="pc-is-friend"></div>
+        <?php endif; ?>
         <div class="pc-actions">
             <?php if ($page['is_me']): ?>
                 <div class="pca-icon change-cover-icon"><a href="account.php#images"></a></div>
