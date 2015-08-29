@@ -9,6 +9,7 @@
         <?php require_once 'partials/welcome-box.tpl.php'; ?>
         <?php require_once 'partials/my-details-box.tpl.php'; ?>
         <?php require_once 'partials/friends-box.tpl.php'; ?>
+        <?php require_once 'partials/friend-requests-box.tpl.php'; ?>
     </div>
 
 </div>

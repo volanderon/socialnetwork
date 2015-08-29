@@ -41,18 +41,7 @@
         </div>
 
         <?php require_once 'partials/friends-box.tpl.php'; ?>
-
-        <div class="clear-fix box">
-            <div class="box-title">
-                Friend Requests
-            </div>
-            <?php if (!$friendRequests) { echo '<div class="box-partial">None yet</div>'; } ?>
-            <?php foreach($friendRequests as $friend): ?>
-                <a href="profile.php?user_id=<?php echo $friend['user_id']; ?>">
-                    <img class="friend-pic" title="<?php echo $friend['user_firstname']; ?>" src="user_content/photos/<?php echo $friend['user_profile_picture']; ?>">
-                </a>
-            <?php endforeach; ?>
-        </div>
+        <?php require_once 'partials/friend-requests-box.tpl.php'; ?>
 
     </div>
 

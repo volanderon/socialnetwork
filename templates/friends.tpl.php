@@ -20,6 +20,7 @@
     <div id="right-section">
         <?php require_once 'partials/about-box.tpl.php'; ?>
         <?php require_once 'partials/friends-box.tpl.php'; ?>
+        <?php if ($page['is_me']) { require_once 'partials/friend-requests-box.tpl.php'; } ?>
     </div>
 </div>
 
