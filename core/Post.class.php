@@ -11,12 +11,17 @@ class Post{
     /**
      * Add a new post, accepts user id and post content
      * @param $user_id
+     * @param $friend_id
      * @param $content
      * @return mixed
      */
-    public function publishPost($user_id, $content){
-        $this->_db->query("INSERT INTO posts (post_id, user_id, post_content, post_created) VALUES (NULL, '$user_id', '$content', CURRENT_TIME())");
-        return $this->getLastPost();
+    public function publishPost($user_id, $friend_id, $content){
+        $this->_db->query("INSERT INTO posts (user_id, post_content, post_created) VALUES ({$user_id}, '{$content}', CURRENT_TIME())");
+        $post = $this->getLastPost();
+        if ($friend_id) {
+            $this->_db->query("INSERT INTO posts_relations (post_id, user_id, post_to_friend_id) VALUES ({$post['post_id']}, {$user_id}, {$friend_id})");
+        }
+        return $post;
     }
 
     /**
@@ -69,6 +74,7 @@ class Post{
                 FROM users_info
                 INNER JOIN posts ON users_info.user_id=posts.user_id
                 LEFT JOIN likes ON posts.post_id=likes.post_id
+                LEFT JOIN posts_relations ON posts.post_id=posts_relations.post_id
                 WHERE posts.user_id = users_info.user_id";
 
         if ($post_id) {
@@ -79,7 +85,7 @@ class Post{
         } else {
             if ($user_id) {
                 // User profile view
-                $sql .= " AND posts.user_id={$user_id}";
+                $sql .= " AND (posts.user_id={$user_id} OR post_to_friend_id={$user_id})";
             }
             $sql .= " GROUP BY posts.post_id ORDER BY posts.post_created DESC LIMIT {$offset}, {$limit}";
             $post = $this->_db->query($sql);

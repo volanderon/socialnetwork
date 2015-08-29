@@ -90,8 +90,8 @@ $app->get( '/post/:id', function($id) use ( $post ) {
 });
 
 $app->post( '/post', function() use ( $post, $app ) {
-    $content = json_decode( $app->request->getBody() );
-    echo json_encode($post->publishPost( $_SESSION['auth']['user_id'], $content ));
+    $data = json_decode( $app->request->getBody() );
+    echo json_encode($post->publishPost( $_SESSION['auth']['user_id'], $data->friend_id, $data->content ));
 });
 
 $app->delete( '/post', function() use ( $post, $app ) {

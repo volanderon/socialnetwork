@@ -2,9 +2,10 @@ var Posts = {
     /**
      * Adds a new post
      */
-    addNewPost: function() {
+    addNewPost: function(is_profile_page) {
         var new_post = $('#new-post-content'),
-            content = new_post.val();
+            content = new_post.val(),
+            is_not_me = is_profile_page && parseInt(auth.user_id) !== parseInt(viewedUser.user_id);
 
         if (content.trim() === '') {
             alert('Please type something...');
@@ -15,7 +16,7 @@ var Posts = {
         $.ajax({
             type: "POST",
             url: "api/post",
-            data: JSON.stringify(content),
+            data: JSON.stringify({content: content, friend_id: is_profile_page && is_not_me ? viewedUser.user_id : '0'}),
             success: function(post) {
                 $('#posts').prepend(Posts.buildPostHtml(post, '', '', 0)).find('.post:first-child').hide().slideDown();
             }
@@ -258,14 +259,19 @@ $(function() {
         $('#load-more-posts-btn').on('click', function() {
             Posts.loadMorePosts(true);
         });
+        $('#new-post-btn').on('click', function() {
+            Posts.addNewPost(true);
+        });
     } else {
         Posts.loadMorePosts(false);
         $('#load-more-posts-btn').on('click', function() {
             Posts.loadMorePosts(false);
         });
+        $('#new-post-btn').on('click', function() {
+            Posts.addNewPost(false);
+        });
     }
 
-    $('#new-post-btn').on('click', Posts.addNewPost);
     body.on('click', '.post-delete', Posts.deletePost);
     body.on('click', '.post-like-btn', Posts.likePost);
     body.on('click', '.post-comment-btn', Posts.commentOnPost);
