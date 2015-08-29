@@ -17,9 +17,61 @@ var Posts = {
             url: "api/post",
             data: JSON.stringify(content),
             success: function(post) {
-                $('#posts').prepend(Posts.buildPostHtml(post)).find('.post:first-child').hide().slideDown();
+                $('#posts').prepend(Posts.buildPostHtml(post, '', '', 0)).find('.post:first-child').hide().slideDown();
             }
         });
+    },
+    /**
+     * Adds a new comment to a post
+     * @param e
+     */
+    addNewComment: function(e) {
+        var content = $(this).val(),
+            post = $(this).parents('.post'),
+            post_id = post.data('post-id');
+
+        if (e.which !== 13) {
+            return;
+        }
+        if (content.trim() === '') {
+            alert('Please type something...');
+            return;
+        }
+        $(this).val('');
+
+        $.ajax({
+            type: "POST",
+            url: "api/post/comment",
+            data: JSON.stringify({post_id: post_id, content: content}),
+            success: function(comments) {
+                post.find('.post-comments').append(Posts.buildCommentsHtml(post_id, comments)).find('.comment:last-child').hide().slideDown();
+            }
+        });
+    },
+    post_offsets: {},
+    /**
+     * Load 5 more comments each call
+     */
+    viewMoreComments: function() {
+        var post = $(this).parents('.post'),
+            post_id = post.data('post-id');
+        if (!Posts.post_offsets[post_id]) {
+            Posts.post_offsets[post_id] = 3;
+        }
+        $.ajax({
+            type: "GET",
+            url: "api/post/comments/" + post_id + "/" + Posts.post_offsets[post_id] + "/5",
+            success: function(comments) {
+                var len = comments[post_id].length;
+                post.find('.post-comments').prepend(Posts.buildCommentsHtml(post_id, comments));
+                if (len) {
+                    post.find('.post-comments .comment').slice(0, Math.min(5, len)).hide().slideDown();
+                } else {
+                    post.find('.view-more-comments').remove();
+                }
+            }
+        });
+        Posts.post_offsets[post_id] += 5;
     },
     offset: 0,
     /**
@@ -32,8 +84,9 @@ var Posts = {
             success: function(data) {
                 var len = data['posts'].length;
                 $.each(data['posts'], function(key, post) {
-                    var likes_html = Posts.buildLikesHtml(post.post_id, data['likes']);
-                    $('#posts').append(Posts.buildPostHtml(post, likes_html));
+                    var likes_html = Posts.buildLikesHtml(post.post_id, data['likes']),
+                        comments_html = Posts.buildCommentsHtml(post.post_id, data['comments']);
+                    $('#posts').append(Posts.buildPostHtml(post, likes_html, comments_html, data['comments'][post.post_id].length));
                 });
                 if (len) {
                     $('#posts .box').slice(-(Math.min(3, len))).hide().slideDown();
@@ -49,11 +102,14 @@ var Posts = {
      * Get post id from data attribute on the #posts div
      */
     loadSinglePost: function() {
+        var post_id = $('#posts').data('post-id');
         $.ajax({
             type: "GET",
-            url: "api/post/" + $('#posts').data('post-id'),
-            success: function(post) {
-                $('#posts').append(Posts.buildPostHtml(post));
+            url: "api/post/" + post_id,
+            success: function(data) {
+                var likes_html = Posts.buildLikesHtml(data.posts[0].post_id, data['likes']),
+                    comments_html = Posts.buildCommentsHtml(data.posts[0].post_id, data['comments']);
+                $('#posts').append(Posts.buildPostHtml(data.posts[0], likes_html, comments_html, data['comments'][data.posts[0].post_id].length));
             }
         });
     },
@@ -62,9 +118,10 @@ var Posts = {
      * Accepts likes & comments html as params to concat into the template
      * @param post
      * @param likes_html
+     * @param comments_html
      * @returns {string}
      */
-    buildPostHtml: function(post, likes_html) {
+    buildPostHtml: function(post, likes_html, comments_html, comments_len) {
         var likes_users = !post.likes_users ? [] : post.likes_users.split('-'),
             is_i_liked = $.inArray(auth.user_id, likes_users) > -1;
         return '<div class="box post clear-fix" data-post-id="' + post.post_id + '">' +
@@ -85,14 +142,10 @@ var Posts = {
                         likes_html +
                     '</div>' +
                 '</div>' +
-
-                '<div class="view-more-comments"><span>View more comments</span></div>' +
-
-                '<div class="comment box-subTitle">' +
-                    '<img class="comnt-user-icon" src="">' +
-                    '<div class="comnt-text"><div class="user-link">[FullName]</div> Hello there! I\'m a comment!</div>' +
+                (comments_len < 3 ? '' : '<div class="view-more-comments"><span>View more comments</span></div>') +
+                '<div class="post-comments">' +
+                    comments_html +
                 '</div>' +
-
                 '<div class="box-title">' +
                     '<img class="comnt-user-icon" src="user_content/photos/' + auth.user_profile_picture + '">' +
                     '<input class="new-comment" type="text" class="create-comment" placeholder="Leave a comment...">' +
@@ -116,6 +169,29 @@ var Posts = {
             likes_html += '<img class="box-user-icon" src="user_content/photos/' + pic + '">';
         });
         return likes_html;
+    },
+    /**
+     * Builds the html of a post's comments
+     * @param post_id
+     * @param comments
+     * @returns {string}
+     */
+    buildCommentsHtml: function(post_id, comments) {
+        if (!comments[post_id]) {
+            return '';
+        }
+        var comments_html = '';
+        $.each(comments[post_id], function(key, comment) {
+            comments_html += '<div class="comment box-subTitle">' +
+                '<img class="comnt-user-icon" src="user_content/photos/' + comment.user_profile_picture + '">' +
+                '<div class="comnt-text">' +
+                    '<div><a class="user-link" href="profile.php?user_id=' + comment.user_id + '">' + comment.full_name + '</a></div> ' +
+                    comment.comment_content +
+                    '<div>' + moment(comment.comment_time, "YYYY-MM-DD h:mm:ss").fromNow() + '</div>' +
+                '</div>' +
+            '</div>';
+        });
+        return comments_html;
     },
     /**
      * Confirm and delete a post
@@ -165,22 +241,24 @@ var Posts = {
 };
 
 $(function() {
-    var body = $('body');
+    var body = $('body'),
+        is_post_page = $('#post-page').length;
 
-    if ($('#post-page').length) {
+    if (!$('#home-page').length && !$('#profile-page').length && !is_post_page) {
+        return;
+    }
+
+    if (is_post_page) {
         Posts.loadSinglePost();
-        return;
+    } else {
+        Posts.loadMorePosts();
     }
-
-    if (!$('#home-page').length && !$('#profile-page').length) {
-        return;
-    }
-
-    Posts.loadMorePosts();
 
     $('#new-post-btn').on('click', Posts.addNewPost);
     $('#load-more-posts-btn').on('click', Posts.loadMorePosts);
     body.on('click', '.post-delete', Posts.deletePost);
     body.on('click', '.post-like-btn', Posts.likePost);
     body.on('click', '.post-comment-btn', Posts.commentOnPost);
+    body.on('keyup', '.new-comment', Posts.addNewComment);
+    body.on('click', '.view-more-comments', Posts.viewMoreComments);
 });

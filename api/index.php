@@ -146,6 +146,19 @@ $app->put( '/post/unlike', function() use ( $post, $app ) {
 });
 
 /**
+ * Posts - comment
+ */
+
+$app->get( '/post/comments/:post_id/:offset/:limit', function($post_id, $offset, $limit) use ( $post ) {
+    echo json_encode([$post_id => $post->getComments($post_id, $offset, $limit)]);
+});
+
+$app->post( '/post/comment', function() use ( $post, $app ) {
+    $data = json_decode( $app->request->getBody() );
+    echo json_encode($post->publishComment( $_SESSION['auth']['user_id'], $data->post_id, $data->content ));
+});
+
+/**
  * Login
  */
 
