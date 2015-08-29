@@ -11,4 +11,7 @@ $friendsModel = new Friends();
 $friends = $friendsModel->getAllFriends($_SESSION['auth']['user_id'], 6);
 shuffle($friends['friends']);
 
+// Get friend requests
+$friendRequests = $friendsModel->getFriendRequests($_SESSION['auth']['user_id']);
+
 require_once 'templates/notifications.tpl.php';

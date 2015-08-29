@@ -1,7 +1,7 @@
 var Friends = {
     addFriend: function() {
         if ($(this).hasClass('add-friend-icon')) {
-            $.ajax({type: "POST", url: "api/friend/request", data: JSON.stringify({friend_id: viewedUser.user_id})});
+            $.ajax({type: "POST", url: "api/friend", data: JSON.stringify({friend_id: viewedUser.user_id})});
         } else {
             $.ajax({type: "DELETE", url: "api/friend", data: JSON.stringify({friend_id: viewedUser.user_id})});
         }

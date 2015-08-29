@@ -22,8 +22,19 @@ class Friends {
      * @param $friend_id
      * @return bool|mysqli_result
      */
-    public function sendRequest($user_id, $friend_id) {
-        return $this->_db->query("INSERT INTO friend_request (user_id, user_friend_id, request_created) VALUES ({$user_id}, {$friend_id}, CURRENT_TIME())");
+    public function addFriend($user_id, $friend_id) {
+        $result = $this->_db->query("SELECT 1 FROM friend_request WHERE user_id={$friend_id} AND user_friend_id={$user_id} LIMIT 1");
+        $friend_req = mysqli_fetch_assoc($result);
+        if ($friend_req) {
+            // Accept
+            $this->_db->query("DELETE FROM friend_request WHERE (user_id={$user_id} AND user_friend_id={$friend_id}) OR (user_id={$friend_id} AND user_friend_id={$user_id})");
+            $this->_db->query("INSERT INTO friends (user_id, user_friend_id, friendship_created) VALUES ({$user_id}, {$friend_id}, CURRENT_TIME())");
+            $this->_db->query("INSERT INTO friends (user_id, user_friend_id, friendship_created) VALUES ({$friend_id}, {$user_id}, CURRENT_TIME())");
+        } else {
+            // Send friend request
+            $this->_db->query("INSERT INTO friend_request (user_id, user_friend_id, request_created) VALUES ({$user_id}, {$friend_id}, CURRENT_TIME())");
+        }
+        return true;
     }
 
     /**
@@ -34,7 +45,7 @@ class Friends {
      */
     public function deleteFriend($user_id, $friend_id) {
         $this->_db->query("DELETE FROM friend_request WHERE user_id={$user_id} AND user_friend_id={$friend_id}");
-        $this->_db->query("DELETE FROM friends WHERE user_id={$user_id} AND user_friend_id={$friend_id}");
+        $this->_db->query("DELETE FROM friends WHERE (user_id={$user_id} AND user_friend_id={$friend_id} OR user_id={$friend_id} AND user_friend_id={$user_id})");
         return true;
     }
 
@@ -78,4 +89,18 @@ class Friends {
         return $status;
     }
 
+    /**
+     * Get all friend requests for a user
+     * @param $user_id
+     * @return array
+     */
+    public function getFriendRequests($user_id) {
+        $query = "SELECT * FROM friend_request INNER JOIN users_info ON friend_request.user_id=users_info.user_id WHERE friend_request.user_friend_id={$user_id}";
+        $result = $this->_db->query($query);
+        $friend_requests = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $friend_requests[] = $row;
+        }
+        return $friend_requests;
+    }
 };

@@ -130,9 +130,9 @@ $app->post( '/post/comment', function() use ( $post, $app ) {
  * Friends
  */
 
-$app->post( '/friend/request', function() use ( $friend, $app ) {
+$app->post( '/friend', function() use ( $friend, $app ) {
     $data = json_decode( $app->request->getBody() );
-    echo json_encode($friend->sendRequest( $_SESSION['auth']['user_id'], $data->friend_id ));
+    echo json_encode($friend->addFriend( $_SESSION['auth']['user_id'], $data->friend_id ));
 });
 
 $app->delete( '/friend', function() use ( $friend, $app ) {
