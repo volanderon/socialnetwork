@@ -37,6 +37,7 @@
   float: left;
   clear: right;
   position: relative;
+  color: #fdfdfe;
 }
 .header-user-icon {
   position: relative;

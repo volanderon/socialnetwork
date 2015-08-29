@@ -17,13 +17,13 @@
             <div class="box-title">
                 Settings
             </div>
-            <div class="box-subTitle" data-tab="general">
+            <div class="box-partial" data-tab="general">
                 General
             </div>
-            <div class="box-subTitle" data-tab="images">
+            <div class="box-partial" data-tab="images">
                 Profile Picture
             </div>
-            <div class="box-subTitle" data-tab="password">
+            <div class="box-partial" data-tab="password">
                 Password
             </div>
 

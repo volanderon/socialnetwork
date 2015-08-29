@@ -53,8 +53,20 @@ var Posts = {
                     '</div>' +
                 '</div>' +
                 '<div class="post-content">' + post.post_content + '</div>' +
-                '<div class="box-title"><span>Like</span> - <span>Comment</span></div>' +
-                '<div class="box-title"><img class="header-user-icon" src="user_content/photos/' + post.user_profile_picture + '"><input type="text" placeholder="Leave a comment..."></div>' +
+                '<div class="post-subTitle"><span>Like</span> - <span>Comment</span>' +
+                '<div class="post-likes">[likesNum]<img class="box-user-icon" src=""></div></div>' +
+
+
+                '<div class="view-more-comments"><span>View more comments</span></div>' +
+
+//------
+                '<div class="comment box-subTitle">' +
+                    '<img class="comnt-user-icon" src="">' +
+                    '<div class="comnt-text"><div class="user-link">[FullName]</div> Hello there! I\'m a comment!</div>' +
+                '</div>' +
+//------
+
+                '<div class="box-title"><img class="comnt-user-icon" src="user_content/photos/' + post.user_profile_picture + '"><input type="text" class="create-comment" placeholder="Leave a comment..."></div>' +
                 ($('body').data('curr-user-id') == post.user_id ? '<div class="post-delete"></div>' : '') +
             '</div>';
     },

@@ -27,3 +27,66 @@
   width: 100px;
   height: 100px;
 }
+#load-more-posts-btn {
+  position: relative;
+  left: 333px;
+  background-color: white;
+  border: 1px solid silver;
+  border-radius: 3px;
+  padding: 6px;
+  box-shadow: 0px 1px 3px silver;
+  cursor: pointer;
+}
+.notification {
+  padding: 0 !important;
+  border-radius: 4px;
+}
+.box-text {
+  position: relative;
+  top: 10px;
+}
+#noti-added {
+  position: relative;
+  top: 10px;
+  left: 25px;
+}
+#noti-added::before {
+  content: "";
+  position: absolute;
+  display: block;
+  background: url('../images/sprites.png') -49px -170px no-repeat;
+  width: 32px;
+  height: 28px;
+  zoom: 0.7;
+  left: 68px;
+}
+#noti-commented {
+  position: relative;
+  top: 10px;
+  left: 25px;
+}
+#noti-commented::before {
+  content: "";
+  position: absolute;
+  display: block;
+  background: url('../images/sprites.png') -49px -100px no-repeat;
+  width: 32px;
+  height: 28px;
+  zoom: 0.7;
+  left: 68px;
+}
+#noti-liked {
+  position: relative;
+  top: 10px;
+  left: 25px;
+}
+#noti-liked::before {
+  content: "";
+  position: absolute;
+  display: block;
+  background: url('../images/sprites.png') -49px -205px no-repeat;
+  width: 32px;
+  height: 31px;
+  zoom: 0.7;
+  left: 68px;
+}

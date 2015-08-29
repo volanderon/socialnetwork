@@ -17,3 +17,73 @@
   background-size: 100%;
   cursor: pointer;
 }
+#posts .post .comnt-user-icon {
+  position: relative;
+  float: left;
+  clear: right;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+#posts .post .view-more-comments {
+  margin: 0 auto;
+  padding: 4px;
+  background: #f7f8f8;
+  color: grey;
+  font-size: 13px;
+  text-align: center;
+  border-bottom: 1px solid #ededed;
+}
+#posts .post .view-more-comments span {
+  cursor: pointer;
+}
+#posts .post .comment {
+  padding: 5px !important;
+  font-size: 13px;
+  color: #6a6c6b;
+}
+#posts .post .comment .box-user-icon {
+  margin-right: 5px;
+}
+#posts .post .create-comment {
+  width: 91%;
+  min-height: 28px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+}
+#posts .post .post-subTitle {
+  padding: 5px 0 5px 12px;
+  background: #f7f8f8;
+  color: #2e6e83;
+  font-size: 14px;
+  border-bottom: 1px solid #ededed;
+}
+#posts .post .post-subTitle .post-comment {
+  padding: 4px 0 4px 12px;
+  background: #f7f8f8;
+}
+#posts .post .post-subTitle .post-likes {
+  position: relative;
+  right: 8px;
+  float: right;
+  clear: left;
+  color: black;
+}
+#posts .post .post-subTitle .post-likes::before {
+  content: "";
+  position: absolute;
+  display: block;
+  background: url('../images/sprites.png') -49px -205px no-repeat;
+  width: 32px;
+  height: 31px;
+  zoom: 0.7;
+  left: -35px;
+  bottom: 5px;
+}
+#posts .post .post-subTitle .post-likes img {
+  bottom: 2px;
+  margin-right: 5px !important;
+}

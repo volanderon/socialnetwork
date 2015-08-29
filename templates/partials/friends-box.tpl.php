@@ -1,6 +1,6 @@
 <div class="clear-fix box">
     <div class="box-title">
-        <a href="friends.php?user_id=<?php echo !empty($viewedUser) ? $viewedUser['user_id'] : $_SESSION['auth']['user_id']; ?>">
+        <a class="bold user-link" href="friends.php?user_id=<?php echo !empty($viewedUser) ? $viewedUser['user_id'] : $_SESSION['auth']['user_id']; ?>">
             <?php echo isset($page['friends_box_title']) ? $page['friends_box_title'] : 'My Friends'; ?></a>
         (<?php echo $friends['count']; ?>)
     </div>

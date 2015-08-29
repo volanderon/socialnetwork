@@ -63,9 +63,12 @@
             <textarea rows="5" cols="50" name="about" maxlength="160" required><?php echo $_SESSION['auth']['user_about'] ?></textarea>
             <div>About you (160 characters or less)</div>
         </div>
-        <button id="update-user-btn" name="saveChanges">Save Changes</button>
-
 
     </form>
+
+
+    <div class="button-separator">
+        <button id="update-user-btn" name="saveChanges">Save Changes</button>
+    </div>
 
 </div>

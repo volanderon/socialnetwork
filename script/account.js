@@ -111,7 +111,7 @@ $(function() {
         return;
     }
 
-    $('#account-tabs').on('click', '.box-subTitle', Account.selectTab);
+    $('#account-tabs').on('click', '.box-partial', Account.selectTab);
 
     // General tab
     Account.populateBirthdaySelects();

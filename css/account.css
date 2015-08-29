@@ -1,4 +1,4 @@
-#account-page #right-section .box-subTitle {
+#account-page #right-section .box-partial {
   cursor: pointer;
 }
 #account-page #tab-images,
@@ -13,8 +13,54 @@
 }
 #account-page .account-form > div > div:first-child {
   display: inline-block;
-  width: 30%;
+  width: 15%;
+  text-align: right;
+  vertical-align: top;
+  margin-right: 10px;
 }
 #account-page .account-form > div > div:last-child {
-  margin-left: 30%;
+  margin-left: 17%;
+  font-size: 13px;
+}
+#account-page .account-form input[type="text"],
+#account-page .account-form input[type="email"],
+#account-page .account-form input[type="url"] {
+  width: 225px;
+  min-height: 28px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+#account-page .account-form select {
+  width: 75px;
+  min-height: 28px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+#account-page .account-form select:nth-child(2) {
+  width: 50px !important;
+}
+#account-page .account-form select[name="gender"] {
+  width: 110px !important;
+}
+#account-page .account-form textarea {
+  resize: none;
+}
+#account-page #update-user-btn {
+  margin: 10px 0 10px 150px;
+  padding: 5px;
+  background: #f3f1f4;
+  color: #636363;
+  border: 1px solid silver;
+  border-radius: 2px;
+  cursor: pointer;
+}
+#account-page .button-separator {
+  border-top: 1px solid #d2d2d2;
+}
+a {
+  text-decoration: none;
 }

@@ -22,8 +22,8 @@
         <div class="box">
             <div class="box-title">Filter</div>
             <div class="box-subTitle">Posts written by <?php echo $viewedUser['full_name']; ?></div>
-            <div class="box-subTitle">All time</div>
-            <div class="box-subTitle">[dynamic]</div>
+            <div class="box-partial bold">All time</div>
+            <div class="box-partial">[dynamic]</div>
         </div>
 
         <?php require_once 'partials/friends-box.tpl.php'; ?>
