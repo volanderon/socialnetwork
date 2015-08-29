@@ -27,6 +27,39 @@
   width: 100px;
   height: 100px;
 }
+#profile-cover .pc-actions {
+  float: right;
+  margin: 10px 10px 0 0;
+}
+#profile-cover .pca-icon {
+  width: 40px;
+  height: 40px;
+  zoom: 0.5;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  padding: 5px;
+  cursor: pointer;
+  float: right;
+  margin: 0 0 0 10px;
+  position: relative;
+}
+#profile-cover .pca-icon a {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+#profile-cover .change-cover-icon {
+  background: url('../images/sprites.png') -85px -153px no-repeat;
+}
+#profile-cover .add-friend-icon {
+  background: url('../images/sprites.png') -85px -203px no-repeat;
+}
+#profile-cover .remove-friend-icon {
+  background: url('../images/sprites.png') -85px -255px no-repeat;
+}
 #load-more-posts-btn {
   position: relative;
   left: 333px;

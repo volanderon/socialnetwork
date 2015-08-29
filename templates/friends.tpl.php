@@ -1,15 +1,7 @@
 <?php require_once 'partials/header.tpl.php'; ?>
 
 <div id="friends-page" class="clear-fix">
-    <div id="profile-cover" class="box">
-        <img src="user_content/covers/<?php echo $viewedUser['user_secret_picture']; ?>">
-        <div class="pc-footer">
-            <a href="profile.php?user_id=<?php echo $viewedUser['user_id']; ?>">
-                <img src="user_content/photos/<?php echo $viewedUser['user_profile_picture']; ?>">
-            </a>
-            <?php echo $viewedUser['full_name']; ?>
-        </div>
-    </div>
+    <?php require_once 'partials/profile-cover.tpl.php'; ?>
 
     <div id="left-section">
         <?php foreach ($friendsAll as $friend): ?>

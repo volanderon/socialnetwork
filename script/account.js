@@ -99,10 +99,13 @@ var Account = {
         });
         return false;
     },
-    selectTab: function() {
-        var selected_tab = $(this).data('tab');
+    selectTab: function(e, tab) {
+        var selected_tab = tab ? tab : $(this).data('tab');
+        console.log(selected_tab);
         $('#left-section .box').hide();
         $('#tab-' + selected_tab).fadeIn('normal');
+        $('.box-partial').removeClass('selected');
+        $('.box-partial[data-tab="' + selected_tab + '"]').addClass('selected');
     }
 };
 
@@ -112,6 +115,11 @@ $(function() {
     }
 
     $('#account-tabs').on('click', '.box-partial', Account.selectTab);
+    if (window.location.hash) {
+        Account.selectTab(null, window.location.hash.replace('#', ''));
+    } else {
+        $('.box-partial[data-tab="general"]').addClass('selected');
+    }
 
     // General tab
     Account.populateBirthdaySelects();
