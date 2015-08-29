@@ -15,4 +15,4 @@
 
 <div id="posts"></div>
 
-<input id="load-more-posts-btn" type="button" value="Load More">
+<input id="load-more-btn" type="button" value="Load More">

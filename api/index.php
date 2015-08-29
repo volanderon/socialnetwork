@@ -146,6 +146,14 @@ $app->delete( '/friends', function() use ( $friend, $app ) {
 });
 
 /**
+ * Notifications
+ */
+
+$app->get( '/notifications/:offset/:limit', function($offset, $limit) use ( $friend ) {
+    echo json_encode($friend->getNotifications($offset, $limit));
+});
+
+/**
  * Login
  */
 

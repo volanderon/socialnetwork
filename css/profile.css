@@ -70,9 +70,9 @@
 .remove-friend-icon {
   background: url('../images/sprites.png') -85px -255px no-repeat;
 }
-#load-more-posts-btn {
-  position: relative;
-  left: 333px;
+#load-more-btn {
+  display: block;
+  margin: 0 auto;
   background-color: white;
   border: 1px solid silver;
   border-radius: 3px;
@@ -88,12 +88,12 @@
   position: relative;
   top: 10px;
 }
-#noti-added {
+.noti-added {
   position: relative;
   top: 10px;
   left: 25px;
 }
-#noti-added::before {
+.noti-added::before {
   content: "";
   position: absolute;
   display: block;
@@ -103,12 +103,12 @@
   zoom: 0.7;
   left: 68px;
 }
-#noti-commented {
+.noti-commented {
   position: relative;
   top: 10px;
   left: 25px;
 }
-#noti-commented::before {
+.noti-commented::before {
   content: "";
   position: absolute;
   display: block;
@@ -118,12 +118,12 @@
   zoom: 0.7;
   left: 68px;
 }
-#noti-liked {
+.noti-liked {
   position: relative;
   top: 10px;
   left: 25px;
 }
-#noti-liked::before {
+.noti-liked::before {
   content: "";
   position: absolute;
   display: block;

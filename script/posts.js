@@ -93,7 +93,7 @@ var Posts = {
                 if (len) {
                     $('#posts .box').slice(-(Math.min(3, len))).hide().slideDown();
                 } else {
-                    $('#load-more-posts-btn').remove();
+                    $('#load-more-btn').remove();
                 }
             }
         });
@@ -256,7 +256,7 @@ $(function() {
         Posts.loadSinglePost();
     } else if (is_profile_page) {
         Posts.loadMorePosts(true);
-        $('#load-more-posts-btn').on('click', function() {
+        $('#load-more-btn').on('click', function() {
             Posts.loadMorePosts(true);
         });
         $('#new-post-btn').on('click', function() {
@@ -264,7 +264,7 @@ $(function() {
         });
     } else {
         Posts.loadMorePosts(false);
-        $('#load-more-posts-btn').on('click', function() {
+        $('#load-more-btn').on('click', function() {
             Posts.loadMorePosts(false);
         });
         $('#new-post-btn').on('click', function() {
