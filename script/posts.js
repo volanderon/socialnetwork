@@ -67,8 +67,11 @@ var Posts = {
                 post.find('.post-comments').prepend(Posts.buildCommentsHtml(post_id, comments));
                 if (len) {
                     post.find('.post-comments .comment').slice(0, Math.min(5, len)).hide().slideDown();
+                }
+                if (len < 5) {
+                    post.find('.view-more-comments').hide();
                 } else {
-                    post.find('.view-more-comments').remove();
+                    post.find('.view-more-comments').show();
                 }
             }
         });
@@ -92,8 +95,11 @@ var Posts = {
                 });
                 if (len) {
                     $('#posts .box').slice(-(Math.min(3, len))).hide().slideDown();
+                }
+                if (len < 3) {
+                    $('#load-more-btn').hide();
                 } else {
-                    $('#load-more-btn').remove();
+                    $('#load-more-btn').show();
                 }
             }
         });

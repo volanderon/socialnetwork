@@ -149,8 +149,8 @@ $app->delete( '/friends', function() use ( $friend, $app ) {
  * Notifications
  */
 
-$app->get( '/notifications/:offset/:limit', function($offset, $limit) use ( $friend ) {
-    echo json_encode($friend->getNotifications($offset, $limit));
+$app->get( '/notifications/:type/:offset/:limit', function($type, $offset, $limit) use ( $friend ) {
+    echo json_encode($friend->getNotifications($type, $offset, $limit));
 });
 
 /**

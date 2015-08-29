@@ -122,38 +122,58 @@ class Friends {
 
     /**
      * Get user's notifications (friend request received, friend added, someone commented or liked on my post)
+     * @param $type
      * @param int $offset
      * @param int $limit
      * @return array
      */
-    public function getNotifications($offset = 0, $limit = 10) {
+    public function getNotifications($type = 'all', $offset = 0, $limit = 10)
+    {
         $user_id = $_SESSION['auth']['user_id'];
-        $sql_request_sent = "
-            SELECT friend_request.user_id AS friend_id, CONCAT(user_firstname, ' ', user_lastname) AS full_name, user_profile_picture, 'request_sent' AS type, request_created AS date, NULL AS post_id
-            FROM friend_request
-            INNER JOIN users_info ON friend_request.user_id=users_info.user_id
-            WHERE friend_request.user_friend_id={$user_id}";
-        $sql_friend_added = "
-            SELECT friends.user_friend_id AS friend_id, CONCAT(user_firstname, ' ', user_lastname) AS full_name, user_profile_picture, 'friend_added' AS type, friendship_created AS date, NULL AS post_id
-            FROM friends
-            INNER JOIN users_info ON friends.user_friend_id=users_info.user_id
-            WHERE friends.user_id={$user_id}";
+        $parts = [];
+        $sql = 'SELECT * FROM (';
 
-        $sql_post_commented = "
-            SELECT comments.user_id AS friend_id, CONCAT(user_firstname, ' ', user_lastname) AS full_name, user_profile_picture, 'post_commented' AS type, comment_time AS date, comments.post_id AS post_id
-            FROM comments
-            INNER JOIN posts ON comments.post_id=posts.post_id
-            INNER JOIN users_info ON comments.user_id=users_info.user_id
-            WHERE posts.user_id={$user_id} AND comments.user_id!={$user_id}";
+        if ($type === 'all' || $type === 'friendships') {
+            $sql_request_sent = "
+                SELECT friend_request.user_id AS friend_id, CONCAT(user_firstname, ' ', user_lastname) AS full_name, user_profile_picture, 'request_sent' AS type, request_created AS date, NULL AS post_id
+                FROM friend_request
+                INNER JOIN users_info ON friend_request.user_id=users_info.user_id
+                WHERE friend_request.user_friend_id={$user_id}";
 
-        $sql_post_liked = "
-            SELECT likes.user_id AS friend_id, CONCAT(user_firstname, ' ', user_lastname) AS full_name, user_profile_picture, 'post_liked' AS type, like_created AS date, likes.post_id AS post_id
-            FROM likes
-            INNER JOIN posts ON likes.post_id=posts.post_id
-            INNER JOIN users_info ON likes.user_id=users_info.user_id
-            WHERE posts.user_id={$user_id} AND likes.user_id!={$user_id}";
+            $sql_friend_added = "
+                SELECT friends.user_friend_id AS friend_id, CONCAT(user_firstname, ' ', user_lastname) AS full_name, user_profile_picture, 'friend_added' AS type, friendship_created AS date, NULL AS post_id
+                FROM friends
+                INNER JOIN users_info ON friends.user_friend_id=users_info.user_id
+                WHERE friends.user_id={$user_id}";
 
-        $result = $this->_db->query("SELECT * FROM ({$sql_request_sent} UNION {$sql_friend_added} UNION {$sql_post_commented} UNION {$sql_post_liked}) AS tmp ORDER BY date DESC LIMIT {$offset}, {$limit}");
+            $parts[] = $sql_request_sent;
+            $parts[] = $sql_friend_added;
+        }
+
+        if ($type === 'all' || $type === 'comments') {
+            $sql_post_commented = "
+                SELECT comments.user_id AS friend_id, CONCAT(user_firstname, ' ', user_lastname) AS full_name, user_profile_picture, 'post_commented' AS type, comment_time AS date, comments.post_id AS post_id
+                FROM comments
+                INNER JOIN posts ON comments.post_id=posts.post_id
+                INNER JOIN users_info ON comments.user_id=users_info.user_id
+                WHERE posts.user_id={$user_id} AND comments.user_id!={$user_id}";
+
+            $parts[] = $sql_post_commented;
+        }
+
+        if ($type === 'all' || $type === 'likes') {
+            $sql_post_liked = "
+                SELECT likes.user_id AS friend_id, CONCAT(user_firstname, ' ', user_lastname) AS full_name, user_profile_picture, 'post_liked' AS type, like_created AS date, likes.post_id AS post_id
+                FROM likes
+                INNER JOIN posts ON likes.post_id=posts.post_id
+                INNER JOIN users_info ON likes.user_id=users_info.user_id
+                WHERE posts.user_id={$user_id} AND likes.user_id!={$user_id}";
+
+            $parts[] = $sql_post_liked;
+        }
+
+        $sql .= implode(' UNION ', $parts) . ") AS tmp ORDER BY date DESC LIMIT {$offset}, {$limit}";
+        $result = $this->_db->query($sql);
         $notifications = [];
         while ($row = mysqli_fetch_assoc($result)) {
             $notifications[] = $row;

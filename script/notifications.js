@@ -6,7 +6,7 @@ var Notifications = {
     loadNotifications: function() {
         $.ajax({
             type: "GET",
-            url: "api/notifications/" + Notifications.offset + "/10",
+            url: "api/notifications/" + Notifications.show_type + "/" + Notifications.offset + "/10",
             success: function(notifications_list) {
                 var len = notifications_list.length;
                 $.each(notifications_list, function(key, notification) {
@@ -14,12 +14,24 @@ var Notifications = {
                 });
                 if (len) {
                     $('#notifications .notification').slice(-(Math.min(10, len))).hide().slideDown();
+                }
+                if (len < 10) {
+                    $('#load-more-btn').hide();
                 } else {
-                    $('#load-more-btn').remove();
+                    $('#load-more-btn').show();
                 }
             }
         });
         Notifications.offset += 10;
+    },
+    show_type: 'all',
+    filterResults: function() {
+        $('#notifications').empty();
+        Notifications.offset = 0;
+        Notifications.show_type = $(this).data('type');
+        $('.filter').removeClass('selected');
+        $(this).addClass('selected');
+        Notifications.loadNotifications();
     },
     /**
      * Build the notification html depending on the event type
@@ -64,4 +76,6 @@ $(function() {
 
     Notifications.loadNotifications();
     $('#load-more-btn').on('click', Notifications.loadNotifications);
+    $('.filter').on('click', Notifications.filterResults);
+    $('.filter:eq(0)').addClass('selected');
 });
