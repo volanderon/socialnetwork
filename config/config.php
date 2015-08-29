@@ -10,3 +10,4 @@ define( "DB_DATABASE_NAME", "socialityplus" );
 define("TBL_USERS", "users");
 define("TBL_USERS_INFO", "users_info");
 define("TBL_POSTS", "posts");
+define("TBL_LIKES", "likes");

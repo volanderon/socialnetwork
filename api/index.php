@@ -132,6 +132,20 @@ $app->delete( '/post', function() use ( $post, $app ) {
 });
 
 /**
+ * Posts - Like
+ */
+
+$app->put( '/post/like', function() use ( $post, $app ) {
+    $post_id = json_decode( $app->request->getBody() );
+    echo json_encode($post->likePost( $_SESSION['auth']['user_id'], $post_id ));
+});
+
+$app->put( '/post/unlike', function() use ( $post, $app ) {
+    $post_id = json_decode( $app->request->getBody() );
+    echo json_encode($post->unlikePost( $_SESSION['auth']['user_id'], $post_id ));
+});
+
+/**
  * Login
  */
 

@@ -62,6 +62,9 @@
       color: #2e6e83;
       font-size: 14px;
       border-bottom: 1px solid #ededed;
+      > span {
+        cursor: pointer;
+      }
       .post-comment {
         padding: 4px 0 4px 12px;
         background: #f7f8f8;
@@ -72,7 +75,7 @@
         float: right;
         clear: left;
         color: black;
-        &::before {
+        &.i-liked::before {
           content: "";
           position: absolute;
           display: block;

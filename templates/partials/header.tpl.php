@@ -21,6 +21,9 @@
     <script src="script/notifications.js"></script>
     <script src="script/post.js"></script>
     <script src="script/profile.js"></script>
+    <script>
+        var auth = JSON.parse('<?php echo json_encode($_SESSION['auth']); ?>');
+    </script>
 
 </head>
 

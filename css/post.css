@@ -61,6 +61,9 @@
   font-size: 14px;
   border-bottom: 1px solid #ededed;
 }
+#posts .post .post-subTitle > span {
+  cursor: pointer;
+}
 #posts .post .post-subTitle .post-comment {
   padding: 4px 0 4px 12px;
   background: #f7f8f8;
@@ -72,7 +75,7 @@
   clear: left;
   color: black;
 }
-#posts .post .post-subTitle .post-likes::before {
+#posts .post .post-subTitle .post-likes.i-liked::before {
   content: "";
   position: absolute;
   display: block;
