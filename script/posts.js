@@ -172,7 +172,7 @@ var Posts = {
         if (!likes[post_id]) {
             return '';
         }
-        var pictures = likes[post_id].pictures.split(','),
+        var pictures = likes[post_id].pictures ? likes[post_id].pictures.split(',') : [''],
             likes_html = '';
         $.each(pictures, function(key, pic) {
             likes_html += '<img class="box-user-icon" src="' + Utils.get_profile_picture(pic) + '">';

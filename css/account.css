@@ -70,6 +70,7 @@
 }
 #account-page .button-separator {
   border-top: 1px solid #d2d2d2;
+  margin: 40px -40px -40px -40px !important;
 }
 #account-page a {
   text-decoration: none;

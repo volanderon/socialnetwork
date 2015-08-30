@@ -45,11 +45,9 @@
             <div>About you (160 characters or less)</div>
         </div>
 
+        <div class="button-separator">
+            <button id="update-user-btn" name="saveChanges" type="submit">Save Changes</button>
+        </div>
     </form>
-
-
-    <div class="button-separator">
-        <button id="update-user-btn" name="saveChanges">Save Changes</button>
-    </div>
 
 </div>

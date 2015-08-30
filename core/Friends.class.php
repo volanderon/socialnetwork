@@ -48,7 +48,7 @@ class Friends {
      */
     public function deleteFriends($user_id, $friends_to_remove) {
         foreach ($friends_to_remove as $friend_id) {
-            $this->_db->query("DELETE FROM friends WHERE (user_id={$user_id} AND user_friend_id={$friend_id} OR user_id={$friend_id} AND user_friend_id={$user_id})");
+            $this->deleteFriend($user_id, $friend_id);
         }
         return true;
     }

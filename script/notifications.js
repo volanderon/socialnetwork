@@ -1,5 +1,6 @@
 var Notifications = {
     offset: 0,
+    first_run: true,
     /**
      * Get X notifications for current user
      */
@@ -14,6 +15,8 @@ var Notifications = {
                 });
                 if (len) {
                     $('#notifications .notification').slice(-(Math.min(10, len))).hide().slideDown();
+                } else if (Notifications.first_run) {
+                    $('#notifications').html('<div class="box-partial">None yet...</div>');
                 }
                 if (len < 10) {
                     $('#load-more-btn').hide();
