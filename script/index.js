@@ -62,3 +62,11 @@ $(function() {
     $('#reg-btn').on('click', Index.register);
     $('#login-btn').on('click', Index.login);
 });
+
+$(document).on('click', '#reg-error .closeError', function(){
+    $('#reg-error').slideUp();
+});
+
+$(document).on('click', '#login-error .closeError', function(){
+    $('#login-error').slideUp();
+});

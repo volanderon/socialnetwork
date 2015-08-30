@@ -13,7 +13,7 @@
 
         <div class="box">
             <div class="box-title">Filter</div>
-            <div class="box-partial filter" data-type="by_me">Posts written by <?php echo $viewedUser['full_name']; ?></div>
+            <div class="box-partial bold filter" data-type="by_me">Posts written by <?php echo $viewedUser['full_name']; ?></div>
             <div class="box-partial filter" data-type="all">All time</div>
             <?php foreach ($page['periods'] as $key => $period): ?>
                 <div class="box-partial filter" data-type="<?php echo $key; ?>"><?php echo $period; ?></div>

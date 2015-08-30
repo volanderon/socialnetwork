@@ -47,7 +47,8 @@
 
                         <h1>Sign Up</h1>
 
-                        <div id="reg-error" class="error">Error<br>
+                        <div id="reg-error" class="error">Error
+                            <div class="closeError"></div><br>
                             <span></span>
                         </div>
                         <input name="first_name" type="text" placeholder="First Name" pattern="[a-zA-Z]+"
@@ -64,7 +65,8 @@
 
                     <form id="login">
 
-                        <div id="login-error" class="error">Error<br>
+                        <div id="login-error" class="error">Error
+                            <div class="closeError"></div><br>
                             <span></span>
                         </div>
                         <input type="email" name="email" placeholder="Email" required><br>

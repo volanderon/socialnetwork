@@ -88,6 +88,9 @@
   position: relative;
   top: 10px;
 }
+.box-text a {
+  text-decoration: none;
+}
 .noti-added {
   position: relative;
   top: 10px;
@@ -132,4 +135,61 @@
   height: 31px;
   zoom: 0.7;
   left: 68px;
+}
+#friend-img-wrapper span {
+  position: absolute;
+  z-index: 1;
+  margin: 3px;
+  color: white;
+  font-size: 14px;
+  width: 110px;
+  text-shadow: 0px 1px 2px gray;
+}
+.f-allEvents:before {
+  margin: -7px 5px;
+  content: "";
+  position: relative;
+  display: inline-block;
+  background: url('../images/sprites.png') -61px -4px no-repeat;
+  width: 32px;
+  height: 41px;
+  zoom: 0.6;
+  left: -10px;
+  bottom: -6px;
+}
+.f-likes:before {
+  margin: -7px 5px;
+  content: "";
+  position: relative;
+  display: inline-block;
+  background: url('../images/sprites.png') -143px -100px no-repeat;
+  width: 32px;
+  height: 41px;
+  zoom: 0.6;
+  left: -10px;
+  bottom: -6px;
+}
+.f-comments:before {
+  margin: -7px -2px;
+  content: "";
+  position: relative;
+  display: inline-block;
+  background: url('../images/sprites.png') -135px -4px no-repeat;
+  width: 46px;
+  height: 41px;
+  zoom: 0.6;
+  left: -10px;
+  bottom: -6px;
+}
+.f-friendships:before {
+  margin: -7px -3px;
+  content: "";
+  position: relative;
+  display: inline-block;
+  background: url('../images/sprites.png') 0px -49px no-repeat;
+  width: 48px;
+  height: 41px;
+  zoom: 0.6;
+  left: -10px;
+  bottom: -6px;
 }

@@ -15,10 +15,10 @@
 
         <div class="box">
             <div class="box-title">Filter Events</div>
-            <div class="box-partial filter" data-type="all">All events</div>
-            <div class="box-partial filter" data-type="likes">Likes</div>
-            <div class="box-partial filter" data-type="comments">Comments</div>
-            <div class="box-partial filter" data-type="friendships">Friendships</div>
+            <div class="box-partial filter" data-type="all"><span class="f-allEvents">All events</span></div>
+            <div class="box-partial filter" data-type="likes"><span class="f-likes">Likes</span></div>
+            <div class="box-partial filter" data-type="comments"><span class="f-comments">Comments</span></div>
+            <div class="box-partial filter" data-type="friendships"><span class="f-friendships">Friendships</span></div>
         </div>
 
         <?php require_once 'partials/friends-box.tpl.php'; ?>

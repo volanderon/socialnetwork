@@ -9,6 +9,15 @@
 #account-page #tab-password {
   display: none;
 }
+#account-page #change-password-btn {
+  margin-left: 17%;
+  padding: 5px;
+  background: #f3f1f4;
+  color: #636363;
+  border: 1px solid silver;
+  border-radius: 2px;
+  cursor: pointer;
+}
 #account-page .account-form {
   padding: 10px 40px 40px 40px;
 }
@@ -62,49 +71,49 @@
 #account-page .button-separator {
   border-top: 1px solid #d2d2d2;
 }
-a {
+#account-page a {
   text-decoration: none;
 }
-.box-updateImg {
+#account-page .box-updateImg {
   background: #fdfdfe;
   color: #777779;
   font-weight: bold;
   border-bottom: 1px solid #bebebe;
 }
-.box-updateImg #cover-img {
+#account-page .box-updateImg #cover-img {
   display: inline-block;
   width: 100%;
   height: 180px;
   margin-bottom: 20px;
 }
-.box-updateImg #photo-input {
+#account-page .box-updateImg #photo-input {
   border: 1px solid silver;
   padding: 5px;
   border-radius: 3px;
-  margin-top: 30px;
+  margin-top: 25px;
   margin-bottom: 15px;
 }
-.box-updateImg #cover-input {
+#account-page .box-updateImg #cover-input {
   border: 1px solid silver;
   padding: 5px;
   border-radius: 3px;
   margin: 0 0 15px 10px;
 }
-.box-updateImg #photo-img {
-  margin: 20px 10px;
+#account-page .box-updateImg #photo-img {
+  margin: 15px 10px;
   display: inline-block;
   width: 90px;
   height: 90px;
   border-radius: 5px;
 }
-.box-updateImg #upload-photo-btn {
+#account-page .box-updateImg #upload-photo-btn {
   padding: 5px;
   border: 1px solid silver;
   background-color: #ECECEC;
   border-radius: 2px;
   color: #636363;
 }
-.box-updateImg #upload-cover-btn {
+#account-page .box-updateImg #upload-cover-btn {
   margin: 0 0 20px 10px;
   padding: 5px;
   border: 1px solid silver;
@@ -112,11 +121,11 @@ a {
   border-radius: 2px;
   color: #636363;
 }
-.updateImg {
+#account-page .updateImg {
   display: inline-block;
   vertical-align: top;
 }
-#photo-img {
+#account-page #photo-img {
   margin: 20px 10px;
   display: inline-block;
   width: 90px;
