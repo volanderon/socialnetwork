@@ -4,14 +4,6 @@ class Friends {
 
     private $_db;
 
-    /**
-     *  __construct
-     *
-     * This function get single connection to a database and put it in $this->_db
-     *
-     * @no param needed
-     * @no return
-     */
     public function __construct () {
         $this->_db = DB::getInstance();
     }
@@ -62,13 +54,10 @@ class Friends {
     }
 
     /**
-     *  getAllFriends
-     *
-     * This function returns an array of all friends ID for the user.
-     *
-     * @param (int) ( $id ) The ID of the user asks his friend list
+     * This function returns an array of all friends IDs for the user.
+     * @param $id
      * @param int $limit
-     * @return array ( $friends ) num array with friends ID
+     * @return array
      */
     public function getAllFriends( $id, $limit = 99999 ){
         $query = "SELECT SQL_CALC_FOUND_ROWS * FROM ((SELECT " . TBL_USERS_INFO . ".* FROM friends INNER JOIN " . TBL_USERS_INFO . " ON friends.user_friend_id=" . TBL_USERS_INFO . ".user_id WHERE friends.user_id = $id)
@@ -127,8 +116,7 @@ class Friends {
      * @param int $limit
      * @return array
      */
-    public function getNotifications($type = 'all', $offset = 0, $limit = 10)
-    {
+    public function getNotifications($type = 'all', $offset = 0, $limit = 10) {
         $user_id = $_SESSION['auth']['user_id'];
         $parts = [];
         $sql = 'SELECT * FROM (';

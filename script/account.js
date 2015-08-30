@@ -22,6 +22,9 @@ var Account = {
         $('#birth-month').html(months_html);
         $('#birth-year').html(years_html);
     },
+    /**
+     * Updates user personal data if valid
+     */
     updateUser: function() {
         var form = $('#account-form'), data = JSON.stringify(form.serializeArray());
         $('.error, .success').hide();
@@ -45,6 +48,12 @@ var Account = {
         });
         return false;
     },
+    /**
+     * Upload an image (cover or profile picture) via form data
+     * @param id
+     * @param name
+     * @param url
+     */
     uploadImage: function(id, name, url) {
         var file = $(id)[0].files[0],
             formData = new FormData();
@@ -69,6 +78,9 @@ var Account = {
             }
         });
     },
+    /**
+     * Make sure old password is correct and new ones match, if yes - update
+     */
     changePassword: function() {
         var form = $('form#change-password-form'), data;
         $('.error, .success').hide();
@@ -99,6 +111,11 @@ var Account = {
         });
         return false;
     },
+    /**
+     * Select a tab
+     * @param e
+     * @param tab
+     */
     selectTab: function(e, tab) {
         var selected_tab = tab ? tab : $(this).data('tab');
         console.log(selected_tab);

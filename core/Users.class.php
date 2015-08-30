@@ -7,6 +7,12 @@ class User {
         $this->_db = DB::getInstance();
     }
 
+    /**
+     * Validates, creates a new user (across 2 tables) and login in
+     * @param $details
+     * @param $login
+     * @return string
+     */
     public function createNewUser( $details, $login ) {
         $ret = '';
 
@@ -43,6 +49,13 @@ class User {
         return $ret;
     }
 
+    /**
+     * Validates and updates a user's personal data (and updates the session)
+     * @param $user_id
+     * @param $details
+     * @param $login
+     * @return string
+     */
     public function updateUserGeneral( $user_id, $details, $login ) {
         $ret = '';
 
@@ -75,14 +88,37 @@ class User {
         return $ret;
     }
 
+    /**
+     * Uploads a profile image for a user
+     * @param $user_id
+     * @param $photo
+     * @param $login
+     * @return mixed
+     */
     public function uploadPhoto( $user_id, $photo, $login ) {
         return $this->uploadImage($user_id, $photo, $login, 'photos', 'user_profile_picture');
     }
 
+    /**
+     * Uploads a cover image for a user
+     * @param $user_id
+     * @param $photo
+     * @param $login
+     * @return mixed
+     */
     public function uploadCover( $user_id, $photo, $login ) {
         return $this->uploadImage($user_id, $photo, $login, 'covers', 'user_secret_picture');
     }
 
+    /**
+     * Saves an uploaded image, updates the corresponding table field and updates the session
+     * @param $user_id
+     * @param $img
+     * @param $login
+     * @param $folder
+     * @param $table_field
+     * @return mixed
+     */
     private function uploadImage($user_id, $img, $login, $folder, $table_field) {
         $info = new SplFileInfo($img['name']);
         $ext = $info->getExtension();
@@ -93,6 +129,12 @@ class User {
         return $img;
     }
 
+    /**
+     * Validates and changes password for a user
+     * @param $user_id
+     * @param $passwords
+     * @return string
+     */
     public function changePassword($user_id, $passwords) {
         $ret = '';
         $user = $this->getUserById($user_id);
@@ -108,17 +150,12 @@ class User {
         return $ret;
     }
 
-    public function getAllUsers() {
-        $users = $this->_db->query( "SELECT * FROM " . TBL_USERS );
-
-        $users = array();
-
-        while ( $row = $users->fetch_assoc() )
-            $users[] = $row;
-
-        return $users;
-    }
-
+    /**
+     * Gets a user by id
+     * Populates with custom data
+     * @param $id
+     * @return array|bool|mysqli_result
+     */
     public function getUserById( $id ) {
         $user = $this->_db->query( "SELECT * FROM " . TBL_USERS . " INNER JOIN " . TBL_USERS_INFO . " ON " . TBL_USERS . ".user_id=". TBL_USERS_INFO . ".user_id WHERE " . TBL_USERS . ".user_id = $id" );
         $user = $user->fetch_assoc();
@@ -129,6 +166,11 @@ class User {
         return $user;
     }
 
+    /**
+     * Deletes a user by id
+     * @param $id
+     * @return bool|mysqli_result
+     */
     public function deleteUser( $id ) {
         return $this->_db->query( "DELETE FROM " . TBL_USERS . " WHERE user_id = $id" );
     }

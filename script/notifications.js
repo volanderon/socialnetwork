@@ -25,6 +25,9 @@ var Notifications = {
         Notifications.offset += 10;
     },
     show_type: 'all',
+    /**
+     * Resets notifications and offset and loads a new set according to clicked filter
+     */
     filterResults: function() {
         $('#notifications').empty();
         Notifications.offset = 0;

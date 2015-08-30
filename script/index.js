@@ -1,4 +1,7 @@
 var Index = {
+    /**
+     * Checks if form is valid, if yes - creates a new user and redirects to account page
+     */
     register: function () {
         var form = $('form#register'), data;
         if ($('[name="password"]').val() && $('[name="password"]').val() !== $('[name="password_confirm"]').val()) {
@@ -26,6 +29,9 @@ var Index = {
         });
         return false;
     },
+    /**
+     * Checks if user exists, if yes - logs in and redirects to home page
+     */
     login: function () {
         var form = $('form#login'), data = JSON.stringify(form.serializeArray());
         if (!form[0].checkValidity()) {

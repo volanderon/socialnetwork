@@ -34,11 +34,6 @@ $login = new Login();
  * User
  */
 
-$app->get( '/users', function() use ( $user ) {
-	$user_list = $user->getAllUsers();
-	echo json_encode( $user_list );
-});
-
 $app->get( '/user/:id', function( $id ) use ( $user ) {
 	echo json_encode( $user->getUserById( $id ) );
 });

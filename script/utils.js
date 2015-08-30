@@ -1,4 +1,7 @@
 var Utils = {
+    /**
+     * Calls logout api and redirects to index page
+     */
     logout: function () {
         $.ajax({
             type: "POST",
@@ -8,6 +11,11 @@ var Utils = {
             }
         });
     },
+    /**
+     * Reads a selected image via FileReader and previews it in an img tag
+     * @param input
+     * @param img
+     */
     previewImage: function (input, img) {
         if (!input.files || !input.files[0]) {
             return;
@@ -18,7 +26,7 @@ var Utils = {
         };
         reader.readAsDataURL(input.files[0]);
     }
-}
+};
 
 $(function() {
     $('#logout').on('click', function () {
