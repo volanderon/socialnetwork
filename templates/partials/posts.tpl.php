@@ -1,7 +1,7 @@
 <div class="box update-status">
 
     <div class="box-title">
-        <img class="box-user-icon" src="user_content/photos/<?php echo $_SESSION['auth']['user_profile_picture']; ?>">
+        <img class="box-user-icon" src="<?php echo get_profile_picture($_SESSION['auth']['user_profile_picture']); ?>">
         <span class="user-firstName"><?php echo $_SESSION['auth']['user_firstname']; ?>, Update your status</span>
     </div>
 

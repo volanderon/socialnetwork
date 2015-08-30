@@ -25,6 +25,12 @@ var Utils = {
             img.attr('src', e.target.result);
         };
         reader.readAsDataURL(input.files[0]);
+    },
+    get_profile_picture: function (pic) {
+        return pic ? 'user_content/photos/' + pic + '?' + Date.now() : 'images/thumbs/thumb_008.jpg';
+    },
+    get_cover_picture: function (pic) {
+        return pic ? 'user_content/covers/' + pic + '?' + Date.now() : 'images/cover-default.jpg';
     }
 };
 

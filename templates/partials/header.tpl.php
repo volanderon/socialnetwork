@@ -38,7 +38,7 @@
             <div class="header-menu">
                 <a href="profile.php?user_id=<?php echo $_SESSION['auth']['user_id']; ?>">
                     <span class="header-user-name"><?php echo $_SESSION['auth']['user_firstname']; ?></span>
-                    <img class="header-user-icon" src="user_content/photos/<?php echo $_SESSION['auth']['user_profile_picture']; ?>">
+                    <img class="header-user-icon" src="<?php echo get_profile_picture($_SESSION['auth']['user_profile_picture']); ?>">
                 </a>
                 <a title="Home" href="home.php"><div class="header-notification-icon"></div></a>
                 <a title="Edit Profile" href="account.php"><div class="header-account-icon"></div></a>

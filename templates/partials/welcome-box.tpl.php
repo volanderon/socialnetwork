@@ -1,7 +1,7 @@
 <div class="clear-fix box">
     <div class="box-title">Welcome</div>
     <a href="profile.php?user_id=<?php echo $_SESSION['auth']['user_id']; ?>">
-        <img class="user-welcome-pic" src="user_content/photos/<?php echo $_SESSION['auth']['user_profile_picture']; ?>">
+        <img class="user-welcome-pic" src="<?php echo get_profile_picture($_SESSION['auth']['user_profile_picture']); ?>">
     </a>
     <div class="details">
         <a href="profile.php?user_id=<?php echo $_SESSION['auth']['user_id']; ?>">

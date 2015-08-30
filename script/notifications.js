@@ -65,7 +65,7 @@ var Notifications = {
                 break;
         }
         return '<div class="box-subTitle clear-fix notification">' +
-            '<img class="user-welcome-pic" src="user_content/photos/' + notification.user_profile_picture + '">' +
+            '<img class="user-welcome-pic" src="' + Utils.get_profile_picture(notification.user_profile_picture) + '">' +
             '<span class="box-text">' + text + '</span>' +
             '<div class="' + className + '">' + moment(notification.date, "YYYY-MM-DD h:mm:ss").fromNow() + '</div>' +
         '</div>';

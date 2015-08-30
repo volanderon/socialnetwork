@@ -1,8 +1,8 @@
 <div id="profile-cover" class="box">
-    <img src="user_content/covers/<?php echo $viewedUser['user_secret_picture'] . '?' . time(); ?>">
+    <img src="<?php echo get_cover_picture($viewedUser['user_secret_picture']); ?>">
     <div class="pc-footer">
         <a href="profile.php?user_id=<?php echo $viewedUser['user_id']; ?>">
-            <img src="user_content/photos/<?php echo $viewedUser['user_profile_picture'] . '?' . time(); ?>">
+            <img src="<?php echo get_profile_picture($viewedUser['user_profile_picture']); ?>">
         </a>
         <?php echo $viewedUser['full_name']; ?>
         <?php if ($page['friend']['is_friend']): ?>

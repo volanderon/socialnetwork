@@ -135,7 +135,7 @@ var Posts = {
             is_i_liked = $.inArray(auth.user_id, likes_users) > -1;
         return '<div class="box post clear-fix" data-post-id="' + post.post_id + '">' +
                 '<div class="clear-fix">' +
-                    '<img class="user-welcome-pic" src="user_content/photos/' + post.user_profile_picture + '">' +
+                    '<img class="user-welcome-pic" src="' + Utils.get_profile_picture(post.user_profile_picture) + '">' +
                     '<div class="details">' +
                         '<a href="profile.php?user_id=' + post.user_id + '">' + post.user_firstname + ' ' + post.user_lastname + '</a><br>' +
                         '<a href="post.php?post_id=' + post.post_id + '">' + moment(post.post_created, "YYYY-MM-DD h:mm:ss").fromNow() + '</a>' +
@@ -147,7 +147,7 @@ var Posts = {
                     '<span class="post-comment-btn">Comment</span>' +
                     '<div class="post-likes ' + (is_i_liked ? 'i-liked' : '') + '">' +
                         '<span class="pl-count">' + likes_users.length + '</span>' +
-                        (is_i_liked ? '<img class="box-user-icon bui-me" src="user_content/photos/' + auth.user_profile_picture + '">' : '') +
+                        (is_i_liked ? '<img class="box-user-icon bui-me" src="' + Utils.get_profile_picture(auth.user_profile_picture) + '">' : '') +
                         likes_html +
                     '</div>' +
                 '</div>' +
@@ -156,7 +156,7 @@ var Posts = {
                     comments_html +
                 '</div>' +
                 '<div class="box-title">' +
-                    '<img class="comnt-user-icon" src="user_content/photos/' + auth.user_profile_picture + '">' +
+                    '<img class="comnt-user-icon" src="' + Utils.get_profile_picture(auth.user_profile_picture) + '">' +
                     '<input class="new-comment" type="text" class="create-comment" placeholder="Leave a comment...">' +
                 '</div>' +
                 ($('body').data('curr-user-id') == post.user_id ? '<div class="post-delete"></div>' : '') +
@@ -175,7 +175,7 @@ var Posts = {
         var pictures = likes[post_id].pictures.split(','),
             likes_html = '';
         $.each(pictures, function(key, pic) {
-            likes_html += '<img class="box-user-icon" src="user_content/photos/' + pic + '">';
+            likes_html += '<img class="box-user-icon" src="' + Utils.get_profile_picture(pic) + '">';
         });
         return likes_html;
     },
@@ -192,7 +192,7 @@ var Posts = {
         var comments_html = '';
         $.each(comments[post_id], function(key, comment) {
             comments_html += '<div class="comment box-subTitle">' +
-                '<img class="comnt-user-icon" src="user_content/photos/' + comment.user_profile_picture + '">' +
+                '<img class="comnt-user-icon" src="' + Utils.get_profile_picture(comment.user_profile_picture) + '">' +
                 '<div class="comnt-text">' +
                     '<div><a class="user-link" href="profile.php?user_id=' + comment.user_id + '">' + comment.full_name + '</a></div> ' +
                     comment.comment_content +
@@ -237,7 +237,7 @@ var Posts = {
         } else {
             // Do like
             $.ajax({type: "PUT", url: "api/post/like", data: JSON.stringify(post_id)});
-            likes.append('<img class="box-user-icon bui-me" src="user_content/photos/' + auth.user_profile_picture + '">');
+            likes.append('<img class="box-user-icon bui-me" src="' + Utils.get_profile_picture(auth.user_profile_picture) + '">');
         }
         likes.toggleClass('i-liked');
     },
